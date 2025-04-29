@@ -18,35 +18,22 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
   <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 
-  <title>Leaflet Form</title>
+  <title>Form Dafter UMKM</title>
 </head>
 <body class="bg-orange-200">
   <form id="myForm" class="max-w-xl mx-auto p-6 bg-white rounded-lg shadow space-y-4">
     <div class="aspect-square w-[4.5rem]">
-      <img src="Logo_Resqbite.png" class="rounded-lg object-cover w-full h-full mx-auto mb-1">
-  </div>
-  <div class="text-center mb-3">
-      <h2 class="text-xl font-bold mb-6">Form Registrasi</h2>
-  </div>
-  <div>
+        <img src="Logo_Resqbite.png" class="rounded-lg object-cover w-full h-full mx-auto mb-1">
+    </div>
+    <div class="text-center mb-3">
+        <h2 class="text-xl font-bold mb-6">Form Pendaftaran UMKM</h2>
+    </div>
     <div>
-      <label class="block text-sm font-medium text-gray-700 mb-1">Nama</label>
+      <label class="block text-sm font-medium text-gray-700 mb-1">Nama Usaha</label>
       <input type="text" name="name" class="w-full border-gray-300 rounded-lg shadow-sm" required />
     </div>
     <div>
-      <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-      <input type="email" name="email" class="w-full border-gray-300 rounded-lg shadow-sm" required />
-    </div>
-    <div>
-      <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
-      <input type="password" name="password" class="w-full border-gray-300 rounded-lg shadow-sm" required />
-    </div>
-    <div>
-      <label class="block text-sm font-medium text-gray-700 mb-1">No. Telp</label>
-      <input type="tel" name="phone" class="w-full border-gray-300 rounded-lg shadow-sm" />
-    </div>
-    <div>
-      <label class="block text-sm font-medium text-gray-700 mb-1">Alamat</label>
+      <label class="block text-sm font-medium text-gray-700 mb-1">Alamat Usaha</label>
       <input type="text" name="address" id="address" class="w-full border-gray-300 rounded-lg shadow-sm" required />
     </div>
     <div>
@@ -57,6 +44,10 @@
       <label class="block text-sm font-medium text-gray-700 mb-1">Longitude</label>
       <input type="text" name="longitude" id="longitude" class="w-full border-gray-300 rounded-lg shadow-sm" readonly required />
     </div>
+    <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+        <input type="tel" name="phone" class="w-full border-gray-300 rounded-lg shadow-sm" />
+      </div>
     <div class="pt-4">
       <button type="submit" class="w-full bg-orange-500 text-white py-2 px-4 rounded-lg hover:bg-amber-500">Submit</button>
     </div>
