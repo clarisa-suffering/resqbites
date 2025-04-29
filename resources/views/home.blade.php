@@ -16,7 +16,7 @@
       <div class="relative flex h-16 items-center justify-between">
         <!-- Logo -->
         <div class="flex items-center">
-          <img class="h-8 w-auto" src="/logo.png" alt="ResQBite">
+          <img class="h-24 w-auto" src="Logo_Resqbite.png" alt="ResQBite">
         </div>
   
         <!-- Desktop Menu -->
@@ -228,7 +228,7 @@
     <!-- Partner Invitation Section -->
     <section class="bg-white px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-6 rounded-xl shadow mx-6">
       <div class="aspect-square max-w-32">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoFSWnj2dGHiwnp4_I-EVlMvt153fbg9m-Yg&s" class="rounded-lg object-cover w-full h-full mx-auto mb-1">
+        <img src="Logo_Resqbite.png" class="rounded-lg object-cover w-full h-full mx-auto mb-1">
       </div>
         <div class="flex-1 text-center md:text-center">
             <p class="text-lg font-bold mb-2">Ingin menggabungkan usaha anda di platform kami?</p>
