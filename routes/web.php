@@ -1,10 +1,11 @@
 <?php
 
+use App\Http\Controllers\StoreController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 
 Route::get('/formRegisterUser', function () {
     return view('formRegisterUser');
@@ -13,3 +14,5 @@ Route::get('/formRegisterUser', function () {
 Route::get('/formUMKM', function () {
     return view('formUMKM');
 });
+
+Route::post('/insertStore',[StoreController::class, 'insert'])->name('insertStore');

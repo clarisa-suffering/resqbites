@@ -18,7 +18,8 @@ return new class extends Migration
             $table->integer('stock');
             $table->float('price');
             $table->integer('discount');
-            $table->string('photo')->nullable(); // URL or path to photo
+            $table->string('photo_name');
+            $table->string('photo_path');
             $table->foreignId('store_id')->constrained('stores')->onDelete('cascade');
             $table->timestamps();
         });

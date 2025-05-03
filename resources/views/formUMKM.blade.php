@@ -18,15 +18,20 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
   <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 
-  <title>Form Dafter UMKM</title>
+  <title>Form Daftar UMKM</title>
 </head>
 <body class="bg-orange-200">
-  <form id="myForm" class="max-w-xl mx-auto p-6 bg-white rounded-lg shadow space-y-4">
+  <form id="myForm" action="{{ route('insertStore') }}" method="POST" enctype="multipart/form-data" class="max-w-xl mx-auto p-6 bg-white rounded-lg shadow space-y-4">
+    @csrf
     <div class="aspect-square w-[4.5rem]">
         <img src="Logo_Resqbite.png" class="rounded-lg object-cover w-full h-full mx-auto mb-1">
     </div>
     <div class="text-center mb-3">
         <h2 class="text-xl font-bold mb-6">Form Pendaftaran UMKM</h2>
+    </div>
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">Logo Usaha</label>
+      <input type="file" name="logo" accept="image/*" class="w-full border-gray-300 shadow-sm" required>
     </div>
     <div>
       <label class="block text-sm font-medium text-gray-700 mb-1">Nama Usaha</label>
@@ -36,6 +41,8 @@
       <label class="block text-sm font-medium text-gray-700 mb-1">Alamat Usaha</label>
       <input type="text" name="address" id="address" class="w-full border-gray-300 rounded-lg shadow-sm" required />
     </div>
+     <!-- Map -->
+    <div id="map" class="max-w-xl mx-auto my-6" style="height: 400px;"></div>
     <div>
       <label class="block text-sm font-medium text-gray-700 mb-1">Latitude</label>
       <input type="text" name="latitude" id="latitude" class="w-full border-gray-300 rounded-lg shadow-sm" readonly required />
@@ -45,6 +52,10 @@
       <input type="text" name="longitude" id="longitude" class="w-full border-gray-300 rounded-lg shadow-sm" readonly required />
     </div>
     <div>
+      <label class="block text-sm font-medium text-gray-700 mb-1">Close Time</label>
+      <input type="time" name="close_time" class="w-full border-gray-300 rounded-lg shadow-sm" required />
+    </div>
+    <div>
         <label class="block text-sm font-medium text-gray-700 mb-1">Phone</label>
         <input type="tel" name="phone" class="w-full border-gray-300 rounded-lg shadow-sm" />
       </div>
@@ -52,9 +63,6 @@
       <button type="submit" class="w-full bg-orange-500 text-white py-2 px-4 rounded-lg hover:bg-amber-500">Submit</button>
     </div>
   </form>
-
-  <!-- Map -->
-  <div id="map" class="max-w-xl mx-auto my-6" style="height: 400px;"></div>
 
   <!-- Leaflet Script -->
   <script>
@@ -76,10 +84,10 @@
         if (text) marker.bindPopup(text).openPopup();
       }
   
-      // ✅ This is the correct and modern usage
+      // This is the correct and modern usage
       const geocoder = L.Control.Geocoder.nominatim();
   
-      // 📍 Get coordinates when address is typed
+      // Get coordinates when address is typed
       addressInput.addEventListener('blur', function () {
         const address = addressInput.value.trim();
         if (!address) return;
@@ -100,7 +108,7 @@
         });
       });
   
-      // 🌍 Manual coordinate selection from map
+      //Manual coordinate selection from map
       map.on('click', function (e) {
         const latlng = e.latlng;
         latitudeInput.value = latlng.lat.toFixed(6);
