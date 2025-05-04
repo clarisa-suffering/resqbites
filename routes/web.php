@@ -16,3 +16,7 @@ Route::get('/formUMKM', function () {
 });
 
 Route::post('/insertStore',[StoreController::class, 'insert'])->name('insertStore');
+
+Route::get('/order', function () {
+    return view('orderpage');
+});
