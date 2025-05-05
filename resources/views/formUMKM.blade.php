@@ -59,6 +59,71 @@
         <label class="block text-sm font-medium text-gray-700 mb-1">Phone</label>
         <input type="tel" name="phone" class="w-full border-gray-300 rounded-lg shadow-sm" />
       </div>
+    
+      <h2 class="text-lg font-bold mb-4">Paket Promosi</h2>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <!-- CARD EXAMPLES -->
+          <!-- 6 cards -->
+          <div data-id="1" class="promo-card cursor-pointer max-w-xs p-3 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700  flex flex-col">
+            <h5 class="mb-1 text-lg font-semibold text-gray-900 dark:text-white">Promosi Notifikasi Email</h5>
+            <p class="text-xs text-gray-700 dark:text-gray-400">Mengirimkan 1x notifikasi email kepada 50 user bahwa usaha baru saja bergabung ke aplikasi</p>
+            <div class="mt-auto">
+              <p class="text-sm font-semibold text-gray-700 dark:text-gray-400 mt-3"><s>Rp 25.000</s></p>
+              <p class="text-sm font-semibold text-red-700 dark:text-gray-400">Rp 15.000</p>
+            </div>
+          </div>
+          <div data-id="2" class="promo-card cursor-pointer max-w-xs p-3 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 flex flex-col">
+            <h5 class="mb-1 text-lg font-semibold text-gray-900 dark:text-white">Promosi di Halaman Utama</h5>
+            <p class="text-xs text-gray-700 dark:text-gray-400">Menampilkan banner tentang usaha di bagian slider di Halaman Utama selama 3 hari
+              Banner akan ditampilkan kepada 50 user secara acak</p>
+              <div class="mt-auto">
+                <p class="text-sm font-semibold text-gray-700 dark:text-gray-400 mt-3"><s>Rp 35.000</s></p>
+                <p class="text-sm font-semibold text-red-700 dark:text-gray-400">Rp 25.000</p>
+              </div>
+          </div>
+          <div data-id="3" class="promo-card cursor-pointer max-w-xs p-3 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 flex flex-col">
+            <h5 class="mb-1 text-lg font-semibold text-gray-900 dark:text-white">Promosi Pop-Up</h5>
+            <p class="text-sm text-gray-700 dark:text-gray-400">Menampilkan pop-up promosi usaha pada saat user membuka aplikasi yang berlangsung selama 3 hari
+              Pop-up ditampilkan kepada 50 user dengan lokasi terdekat dengan tempat usaha</p>
+              <div class="mt-auto">
+                <p class="text-sm font-semibold text-gray-700 dark:text-gray-400 mt-3"><s>Rp 40.000</s></p>
+                <p class="text-sm font-semibold text-red-700 dark:text-gray-400">Rp 30.000</p>
+              </div>
+          </div>
+          <div data-id="4" class="promo-card cursor-pointer max-w-xs p-3 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 flex flex-col">
+            <h5 class="mb-1 text-lg font-semibold text-gray-900 dark:text-white">Paket Promosi Notifikasi Email + Promosi di Halaman Utama</h5>
+            <p class="text-sm text-gray-700 dark:text-gray-400">Mengirimkan 1x notifikasi email kepada 50 user bahwa usaha baru saja bergabung ke aplikasi
+              Menampilkan banner tentang usaha di bagian slider di Halaman Utama selama 3 hari kepada 50 user secara acak</p>
+              <div class="mt-auto">
+                <p class="text-sm font-semibold text-gray-700 dark:text-gray-400 mt-3"><s>Rp 55.000</s></p>
+                <p class="text-sm font-semibold text-red-700 dark:text-gray-400">Rp 35.000</p>
+              </div>
+          </div>
+          <div data-id="5" class="promo-card cursor-pointer max-w-xs p-3 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 flex flex-col">
+            <h5 class="mb-1 text-lg font-semibold text-gray-900 dark:text-white">Paket Promosi Notifikasi Email + Promosi Pop-Up</h5>
+            <p class="text-sm text-gray-700 dark:text-gray-400">Mengirimkan 1x notifikasi email kepada 50 user bahwa usaha baru saja bergabung ke aplikasi
+              Menampilkan pop-up promosi usaha pada saat user membuka aplikasi selama 3 hari kepada 50 user dengan lokasi terdekat dengan tempat usaha</p>
+              <div class="mt-auto">
+                <p class="text-sm font-semibold text-gray-700 dark:text-gray-400 mt-3"><s>Rp 60.000</s></p>
+                <p class="text-sm font-semibold text-red-700 dark:text-gray-400">Rp 40.000</p>
+              </div>
+          </div>
+          <div data-id="6" class="promo-card cursor-pointer max-w-xs p-3 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 flex flex-col">
+            <h5 class="mb-1 text-lg font-semibold text-gray-900 dark:text-white">Paket Promosi Combo</h5>
+            <p class="text-sm text-gray-700 dark:text-gray-400">Mengirimkan 1x notifikasi email kepada 50 user bahwa usaha baru saja bergabung ke aplikasi
+              Menampilkan pop-up promosi usaha pada saat user membuka aplikasi selama 3 hari kepada 50 user dengan lokasi terdekat dengan tempat usaha
+              Menampilkan banner tentang usaha di bagian slider di Halaman Utama selama 3 hari kepada 50 user secara acak</p>
+              <div class="mt-auto">
+                <p class="text-sm font-semibold text-gray-700 dark:text-gray-400 mt-3"><s>Rp 70.000</s></p>
+                <p class="text-sm font-semibold text-red-700 dark:text-gray-400">Rp 50.000</p>
+              </div>
+          </div>
+        </div>
+      
+        <!-- Hidden input to store selected IDs -->
+        <input type="hidden" name="selectedIds" id="selectedIds">
+      </div>
     <div class="pt-4">
       <button type="submit" class="w-full bg-orange-500 text-white py-2 px-4 rounded-lg hover:bg-amber-500">Submit</button>
     </div>
@@ -116,6 +181,30 @@
         setMarker(latlng, 'Manually selected');
       });
     });
+
+
+  const selectedIds = [];
+  const selectedInput = document.getElementById('selectedIds');
+
+  document.querySelectorAll('.promo-card').forEach(card => {
+    card.addEventListener('click', function () {
+      const id = this.dataset.id;
+
+      if (selectedIds.includes(id)) {
+        // Deselect if already selected
+        selectedIds.splice(selectedIds.indexOf(id), 1);
+        this.classList.remove('border-orange-500', 'ring', 'ring-orange-300');
+      } else {
+        // Select if not yet selected
+        selectedIds.push(id);
+        this.classList.add('border-orange-500', 'ring', 'ring-orange-300');
+      }
+
+      // Update hidden input value
+      selectedInput.value = selectedIds.join(',');
+    });
+  });
+
   </script>
   
 </body>

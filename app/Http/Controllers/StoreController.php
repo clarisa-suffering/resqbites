@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PromotionPack;
 use App\Models\Store;
 use Illuminate\Http\Request;
 
@@ -15,8 +16,6 @@ class StoreController extends Controller
         $store->address = $request->address;
         $store->latitude = $request->latitude;
         $store->longitude = $request->longitude;
-        $store->latitude = $request->latitude;
-        $store->phone = $request->phone;
         $store->phone = $request->phone;
         $store->user_id = 1;
 
@@ -31,6 +30,23 @@ class StoreController extends Controller
     
         //insert ke db
         $store->save();
+
+        $storeId = $store->id;
+
+    // Get selected promo IDs from hidden input
+    $selectedIdsString = $request->input('selectedIds');  // e.g., "1,3,5"
+
+    if (!empty($selectedIdsString)) {
+        $selectedIds = explode(',', $selectedIdsString);  // ['1', '3', '5']
+
+        foreach ($selectedIds as $promoId) {
+            $promotionPack = new PromotionPack;
+            $promotionPack->promotion_id= $promoId;
+            $promotionPack->store_id= $storeId;
+
+            $promotionPack->save();
+        }
+    }
 
         return redirect()->route('home');
 
