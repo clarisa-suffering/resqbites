@@ -7,6 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@1.5.0/dist/flowbite.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/flowbite@1.5.0/dist/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -18,20 +19,20 @@
             <div class="relative flex h-16 items-center justify-between">
                 <!-- Logo -->
                 <div class="flex items-center">
-                    <img class="h-8 w-auto" src="/logo.png" alt="ResQBite">
+                    <img class="h-20 w-auto" src="Logo_Resqbite.png" alt="ResQBite">
                 </div>
 
                 <!-- Desktop Menu -->
                 <div class="hidden sm:flex sm:items-center sm:space-x-4">
-                    <a href=""
+                    <a href="{{ route('home') }}"
                         class="rounded-md px-3 py-2 text-sm font-medium 
-        {{ Request::is('/') ? 'bg-amber-500 text-white' : 'text-gray-100 hover:bg-amber-500 hover:text-white' }}">
+        {{ Route::currentRouteName() == 'home' ? 'bg-amber-500 text-white' : 'text-gray-100 hover:bg-amber-500 hover:text-white' }}">
                         Home
                     </a>
 
                     <a href="{{ route('foods.display') }}"
                         class="rounded-md px-3 py-2 text-sm font-medium 
-        {{ Request::is('menu') ? 'bg-amber-500 text-white' : 'text-gray-100 hover:bg-amber-500 hover:text-white' }}">
+        {{ Route::currentRouteName() == 'foods.display' ? 'bg-amber-500 text-white' : 'text-gray-100 hover:bg-amber-500 hover:text-white' }}">
                         Browse Menu
                     </a>
 
@@ -41,9 +42,9 @@
                         Restaurants
                     </a>
 
-                    <a href=""
+                    <a href="{{ route('orderPage') }}"
                         class="rounded-md px-3 py-2 text-sm font-medium 
-        {{ Request::is('') ? 'bg-amber-500 text-white' : 'text-gray-100 hover:bg-amber-500 hover:text-white' }}">
+        {{ Route::currentRouteName() == 'orderPage' ? 'bg-amber-500 text-white' : 'text-gray-100 hover:bg-amber-500 hover:text-white' }}">
                         Track Orders
                     </a>
                 </div>
@@ -107,16 +108,20 @@
         </main>
 
         <!-- Partner Invitation Section -->
-        <section
-            class="bg-white px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-6 rounded-xl shadow mx-6">
-            <div class="aspect-square max-w-32">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoFSWnj2dGHiwnp4_I-EVlMvt153fbg9m-Yg&s"
-                    class="rounded-lg object-cover w-full h-full mx-auto mb-1">
+        <section class="p-6 mb-2">
+            <div class="text-center mt-10 bg-white py-8 rounded-2xl shadow-md max-w-5xl mx-auto">
+                <div class="flex flex-col items-center">
+                    <img class="h-24 w-auto" src="Logo_Resqbite.png" alt="ResQBite">
+                    <div class="text-lg font-semibold mb-3">Ingin menggabungkan usaha Anda di platform kami?</div>
+                    <a href="#"
+                        class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-full font-bold">KLIK
+                        DISINI!</a>
+                </div>
             </div>
-            <div class="flex-1 text-center md:text-center">
-                <p class="text-lg font-bold mb-2">Ingin menggabungkan usaha anda di platform kami?</p>
-                <button class="font-bold bg-orange-500 text-white px-6 py-2 rounded-full hover:bg-amber-500">KLIK DI
-                    SINI</button>
+
+            <!-- Copyright -->
+            <div class="text-center text-xs text-gray-500 mt-6">
+                ResqBites Copyright 2025, All Rights Reserved.<br>
             </div>
         </section>
     </div>

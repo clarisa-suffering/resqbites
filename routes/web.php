@@ -20,4 +20,6 @@ Route::post('/insertStore',[StoreController::class, 'insert'])->name('insertStor
 
 Route::get('/order', function () {
     return view('orderpage');
-});
+})->name('orderPage');
+
+Route::get('/menu', [FoodController::class, 'display'])->name('foods.display');

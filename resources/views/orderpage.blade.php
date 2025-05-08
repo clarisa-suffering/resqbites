@@ -1,17 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ordering Page - ResqBite</title>
+@extends('layout')
 
-    <!-- Tailwind CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Optional: Flowbite (kalau kamu butuh komponen tambahan) -->
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@1.5.0/dist/flowbite.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/flowbite@1.5.0/dist/flowbite.min.css" rel="stylesheet" />
-</head>
+@section('content')
 <body class="bg-gray-100">
     <div class="min-h-screen p-6">
         <!-- Kontainer utama -->
@@ -25,7 +14,7 @@
                         <a href="#" class="text-xs text-orange-500">Ubah Lokasi</a>
                     </div>
                 </div>
-                <a href="#" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-full text-sm font-bold">Kembali ke Halaman Utama</a>
+                <a href="{{ url('/')}}" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-full text-sm font-bold">Kembali ke Halaman Utama</a>
             </div>
 
             <!-- Judul -->
@@ -36,11 +25,11 @@
 
             <!-- Item -->
             <div class="flex items-center border-b px-4 py-4">
-                <img src="{{ asset('images/ricebowl.jpg') }}" alt="Chicken Teriyaki" class="w-24 h-24 rounded-lg object-cover">
+                <img src="https://asset-2.tstatic.net/bangka/foto/bank/images/20230211-Ayam-goreng-mentega.jpg" alt="Ayam Goreng Mentega" class="w-24 h-24 rounded-lg object-cover">
                 <div class="ml-4 flex-1">
-                    <div class="text-green-600 font-bold">Rp 9.600</div>
-                    <div class="text-lg font-medium">Chicken Teriyaki Ricebowl</div>
-                    <div class="text-sm text-orange-600">Itzuka Kitchen</div>
+                    <div class="text-green-600 font-bold">Rp 20.000</div>
+                    <div class="text-lg font-medium">Ayam Goreng Mentega</div>
+                    <div class="text-sm text-orange-600">Izuka Kitchen</div>
                 </div>
                 <div class="flex items-center space-x-2">
                     <button class="bg-gray-200 px-2 py-1 rounded">-</button>
@@ -96,7 +85,7 @@
                     <div class="bg-gray-100 p-4 rounded-xl">
                         <div class="flex justify-between mb-2">
                             <span>Sub Total:</span>
-                            <span>Rp 9.600</span>
+                            <span>Rp 20.000</span>
                         </div>
                         <div class="flex justify-between mb-2">
                             <span>Biaya Pengiriman:</span>
@@ -104,7 +93,7 @@
                         </div>
                         <div class="flex justify-between font-bold text-orange-600 text-lg border-t pt-2">
                             <span>Total:</span>
-                            <span>Rp 14.600</span>
+                            <span>Rp 25.000</span>
                         </div>
                     </div>
                     <button class="w-full bg-gray-900 hover:bg-gray-800 text-white mt-4 py-2 rounded-lg font-bold flex items-center justify-center gap-2">
@@ -116,20 +105,5 @@
                 </div>
             </div>
         </div>
-
-        <!-- Footer -->
-        <div class="text-center mt-10 bg-white py-8 rounded-2xl shadow-md max-w-5xl mx-auto">
-            <div class="flex flex-col items-center">
-                <img class="h-24 w-auto" src="Logo_Resqbite.png" alt="ResQBite">
-                <div class="text-lg font-semibold mb-3">Ingin menggabungkan usaha Anda di platform kami?</div>
-                <a href="#" class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-full font-bold">KLIK DISINI!</a>
-            </div>
-        </div>
-
-        <!-- Copyright -->
-        <div class="text-center text-xs text-gray-500 mt-6">
-            ResqBites Copyright 2025, All Rights Reserved.
-        </div>
     </div>
-</body>
-</html>
+@endsection
