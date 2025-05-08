@@ -1,75 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@1.5.0/dist/flowbite.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/flowbite@1.5.0/dist/flowbite.min.css" rel="stylesheet" />
-    <title>Home</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100">
-<!-- Navbar -->
-<nav class="bg-orange-500 fixed top-0 w-full z-50">
-    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-      <div class="relative flex h-16 items-center justify-between">
-        <!-- Logo -->
-        <div class="flex items-center">
-          <img class="h-24 w-auto" src="Logo_Resqbite.png" alt="ResQBite">
-        </div>
-  
-        <!-- Desktop Menu -->
-        <div class="hidden sm:flex sm:items-center sm:space-x-4">
-          <a href="" class="rounded-md px-3 py-2 text-sm font-medium text-gray-100 hover:bg-amber-500 hover:text-white">Home</a>
-          <a href="" class="rounded-md px-3 py-2 text-sm font-medium text-gray-100 hover:bg-amber-500 hover:text-white">Browse Menu</a>
-          <a href="" class="rounded-md px-3 py-2 text-sm font-medium text-gray-100 hover:bg-amber-500 hover:text-white">Restaurants</a>
-          <a href="" class="rounded-md px-3 py-2 text-sm font-medium text-gray-100 hover:bg-amber-500 hover:text-white">Track Orders</a>
-        </div>
-  
-        <!-- Mobile Menu Button (Right aligned) -->
-        <div class="sm:hidden">
-          <button id="mobile-menu-button" class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-100 hover:bg-amber-500 hover:text-white focus:ring-2 focus:ring-white">
-            <span class="sr-only">Open main menu</span>
-            <svg id="menu-icon" class="block w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-              <path id="menu-path" stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
-  
-    <!-- Mobile Menu -->
-    <div class="hidden sm:hidden" id="mobile-menu">
-      <div class="space-y-1 px-2 pt-2 pb-3">
-        <a href="" class="block rounded-md px-3 py-2 text-sm font-medium text-gray-100 hover:bg-amber-500 hover:text-white">Home</a>
-        <a href="" class="block rounded-md px-3 py-2 text-sm font-medium text-gray-100 hover:bg-amber-500 hover:text-white">Browse Menu</a>
-        <a href="" class="block rounded-md px-3 py-2 text-sm font-medium text-gray-100 hover:bg-amber-500 hover:text-white">Restaurants</a>
-        <a href="" class="block rounded-md px-3 py-2 text-sm font-medium text-gray-100 hover:bg-amber-500 hover:text-white">Track Orders</a>
-      </div>
-    </div>
-  </nav>
-  
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const menuButton = document.getElementById("mobile-menu-button");
-      const mobileMenu = document.getElementById("mobile-menu");
-      const menuIconPath = document.getElementById("menu-path");
-  
-      menuButton.addEventListener("click", function () {
-        mobileMenu.classList.toggle("hidden");
-  
-        // Toggle icon between menu and close
-        if (mobileMenu.classList.contains("hidden")) {
-          menuIconPath.setAttribute("d", "M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5");
-        } else {
-          menuIconPath.setAttribute("d", "M6 18L18 6M6 6l12 12");
-        }
-      });
-    });
-  </script>
+@extends('layout')
 
-<div class="pt-16">
+@section('content')
 {{-- carousel--}}
 <div id="default-carousel" class="relative w-full aspect-[3/1]" data-carousel="slide">
     <!-- Carousel wrapper -->
@@ -114,22 +45,6 @@
     </button>
   </div>
 
-  {{-- search bar --}}
-    <div class="px-5 pt-5">
-        <form class="max-w-md mx-auto">   
-            <div class="relative">
-                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                    </svg>
-                </div>
-                <input type="search" id="default-search" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-orange-500 focus:border-orange-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-500 dark:focus:border-blue-500" placeholder="Cari Lokasi (ex. Jemursari)" required />
-                <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-orange-500 hover:bg-amber-500 focus:ring-4 focus:outline-none focus:ring-orange-500 font-medium rounded-lg text-sm px-4 py-2">Cari</button>
-            </div>
-        </form>
-    </div>
-
-  
     <!-- Terdekat Dengan Anda -->
     <section class="py-10 px-6">
         <h2 class="text-xl font-bold mb-6">Terdekat Dengan Anda</h2>
@@ -225,17 +140,6 @@
         <img src="banner_waste.png" class="w-full rounded-xl shadow-lg mb-6">
     </section>
 
-    <!-- Partner Invitation Section -->
-    <section class="bg-white px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-6 rounded-xl shadow mx-6">
-      <div class="aspect-square max-w-32">
-        <img src="Logo_Resqbite.png" class="rounded-lg object-cover w-full h-full mx-auto mb-1">
-      </div>
-        <div class="flex-1 text-center md:text-center">
-            <p class="text-lg font-bold mb-2">Ingin menggabungkan usaha anda di platform kami?</p>
-            <button class="font-bold bg-orange-500 text-white px-6 py-2 rounded-full hover:bg-amber-500">KLIK DI SINI</button>
-        </div>
-    </section>
 </div>
 
-</body>
-</html>
+@endsection

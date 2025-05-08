@@ -6,9 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Food extends Model
 {
-    protected $table='foods';
+    protected $table = 'foods';
 
-public function orderDetail(){
-    return $this->hasMany(OrderDetail::class, 'food_id', 'id');
-}
+    public function orderDetail()
+    {
+        return $this->hasMany(OrderDetail::class, 'food_id', 'id');
+    }
+
+    public function store()
+    {
+        return $this->belongsTo(Store::class, 'id', 'store_id');
+    }
 }
