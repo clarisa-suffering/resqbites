@@ -19,7 +19,9 @@ return new class extends Migration
             $table->decimal('latitude', 10, 8)->nullable();
             $table->decimal('longitude', 11, 8)->nullable();
             $table->string('phone');
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->string('photo_name');
+            $table->string('photo_path');
+            $table->foreignId('user_id')->constrained('user')->onDelete('cascade');
             $table->timestamps();
         });
     }
