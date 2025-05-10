@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-<body class="bg-gray-100">
+<div class="bg-gray-100">
     <div class="min-h-screen p-6">
         <!-- Kontainer utama -->
         <div class="max-w-5xl mx-auto bg-white rounded-2xl shadow-md p-6">
@@ -27,7 +27,7 @@
             <div class="flex items-center border-b px-4 py-4">
                 <img src="https://asset-2.tstatic.net/bangka/foto/bank/images/20230211-Ayam-goreng-mentega.jpg" alt="Ayam Goreng Mentega" class="w-24 h-24 rounded-lg object-cover">
                 <div class="ml-4 flex-1">
-                    <div class="text-green-600 font-bold">Rp 20.000</div>
+                <div class="text-green-600 font-bold harga-item" data-price="20000">Rp 20.000</div>
                     <div class="text-lg font-medium">Ayam Goreng Mentega</div>
                     <div class="text-sm text-orange-600">Izuka Kitchen</div>
                 </div>
@@ -56,12 +56,13 @@
                         </div>
                     </div>
                     
+                    <!-- Dropdown Payment -->
                     <div class="relative w-full mt-4">
-                        <hr>    
+                        <hr>
                         <br>
-                        <button id="paymentDropdownButton" data-dropdown-toggle="paymentDropdown"
+                        <button id="paymentDropdownButton"
                             class="bg-green-600 hover:bg-green-700 w-full text-white py-2 rounded-lg font-semibold flex justify-between items-center px-4">
-                            <span>Cash</span>
+                            <span class="payment-label">Cash</span>
                             <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"
                                 viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
@@ -85,7 +86,7 @@
                     <div class="bg-gray-100 p-4 rounded-xl">
                         <div class="flex justify-between mb-2">
                             <span>Sub Total:</span>
-                            <span>Rp 20.000</span>
+                            <span id="subtotal">Rp 20.000</span>
                         </div>
                         <div class="flex justify-between mb-2">
                             <span>Biaya Pengiriman:</span>
@@ -93,10 +94,11 @@
                         </div>
                         <div class="flex justify-between font-bold text-orange-600 text-lg border-t pt-2">
                             <span>Total:</span>
-                            <span>Rp 25.000</span>
+                            <span id="total">Rp 25.000</span>
                         </div>
                     </div>
-                    <button class="w-full bg-gray-900 hover:bg-gray-800 text-white mt-4 py-2 rounded-lg font-bold flex items-center justify-center gap-2">
+                    <!-- Tombol Pesan -->
+                    <button id="orderButton" class="w-full bg-gray-900 hover:bg-gray-800 text-white mt-4 py-2 rounded-lg font-bold flex items-center justify-center gap-2">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M4 4h16v2H4zm0 6h16v2H4zm0 6h10v2H4z"/>
                         </svg>
@@ -105,5 +107,97 @@
                 </div>
             </div>
         </div>
-    </div>
+    <!-- Script Interaksi -->
+    <script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Kuantitas + -
+    const decrementBtn = document.querySelector('button.bg-gray-200:nth-of-type(1)');
+    const incrementBtn = document.querySelector('button.bg-gray-200:nth-of-type(2)');
+    const qtyInput = document.querySelector('input[type="text"]');
+    const hargaItem = document.querySelector('.harga-item');
+    const subtotalEl = document.getElementById('subtotal');
+    const totalEl = document.getElementById('total');
+    const biayaKirim = 5000;
+
+    function updateHarga() {
+        const harga = parseInt(hargaItem.dataset.price);
+        const qty = parseInt(qtyInput.value);
+        const subtotal = harga * qty;
+        const total = subtotal + biayaKirim;
+        subtotalEl.innerText = 'Rp ' + subtotal.toLocaleString('id-ID');
+        totalEl.innerText = 'Rp ' + total.toLocaleString('id-ID');
+    }
+
+    if (decrementBtn && incrementBtn && qtyInput) {
+        decrementBtn.addEventListener('click', () => {
+            let value = parseInt(qtyInput.value);
+            if (value > 1) qtyInput.value = value - 1;
+            updateHarga();
+        });
+
+        incrementBtn.addEventListener('click', () => {
+            let value = parseInt(qtyInput.value);
+            qtyInput.value = value + 1;
+            updateHarga();
+        });
+    }
+
+    // Antar / Ambil
+    const methodContainer = document.querySelector('.flex.justify-between.bg-gray-100');
+    const methodBoxes = methodContainer.querySelectorAll('div.text-center');
+
+    if (methodBoxes.length === 2) {
+        methodBoxes.forEach((box, idx) => {
+            box.style.cursor = 'pointer';
+            box.addEventListener('click', () => {
+                methodBoxes.forEach(b => {
+                    b.classList.remove('bg-white', 'shadow', 'border', 'border-green-500');
+                    const textDiv = b.querySelector('div:nth-child(2)');
+                    textDiv.classList.replace('text-green-600', 'text-gray-600');
+                });
+
+                box.classList.add('bg-white', 'shadow', 'border', 'border-green-500');
+                const textDiv = box.querySelector('div:nth-child(2)');
+                textDiv.classList.replace('text-gray-600', 'text-green-600');
+            });
+        });
+    }
+
+    // Dropdown pembayaran
+    const dropdownBtn = document.getElementById('paymentDropdownButton');
+    const dropdownMenu = document.getElementById('paymentDropdown');
+
+    if (dropdownBtn && dropdownMenu) {
+        dropdownBtn.addEventListener('click', () => {
+            dropdownMenu.classList.toggle('hidden');
+        });
+
+        dropdownMenu.querySelectorAll('a').forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const label = item.innerText;
+                dropdownBtn.querySelector('.payment-label').innerText = label;
+                dropdownMenu.classList.add('hidden');
+            });
+        });
+
+        // Optional: close dropdown if clicked outside
+        document.addEventListener('click', (e) => {
+            if (!dropdownBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                dropdownMenu.classList.add('hidden');
+            }
+        });
+    }
+
+
+    // Redirect tombol Pesan
+    const orderBtn = document.getElementById('orderButton');
+    if (orderBtn) {
+        orderBtn.addEventListener('click', () => {
+            window.location.href = "/order/delivery";
+        });
+    }
+});
+</script>
+
 @endsection

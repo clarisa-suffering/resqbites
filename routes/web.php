@@ -23,3 +23,8 @@ Route::get('/order', function () {
 })->name('orderPage');
 
 Route::get('/menu', [FoodController::class, 'display'])->name('foods.display');
+
+Route::get('/order/delivery', function () {
+    return view('deliverypage');
+});
+
