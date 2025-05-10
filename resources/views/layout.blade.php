@@ -19,7 +19,7 @@
             <div class="relative flex h-16 items-center justify-between">
                 <!-- Logo -->
                 <div class="flex items-center">
-                    <img class="h-20 w-auto" src="Logo_Resqbite.png" alt="ResQBite">
+                    <img class="h-20 w-auto" src="/Logo_Resqbite.png" alt="ResQBite">
                 </div>
 
                 <!-- Desktop Menu -->
@@ -111,7 +111,7 @@
         <section class="p-6 mb-2">
             <div class="text-center mt-10 bg-white py-8 rounded-2xl shadow-md max-w-5xl mx-auto">
                 <div class="flex flex-col items-center">
-                    <img class="h-24 w-auto" src="Logo_Resqbite.png" alt="ResQBite">
+                    <img class="h-24 w-auto" src="/Logo_Resqbite.png" alt="ResQBite">
                     <div class="text-lg font-semibold mb-3">Ingin menggabungkan usaha Anda di platform kami?</div>
                     <a href="#"
                         class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-full font-bold">KLIK
