@@ -7,6 +7,7 @@
   <!-- Tailwind and Flowbite -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/flowbite@1.5.0/dist/flowbite.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
@@ -20,7 +21,7 @@
 
   <title>Leaflet Form</title>
 </head>
-<body class="bg-orange-200">
+<body class="bg-gray-100">
   <form id="myForm" class="max-w-xl mx-auto p-6 bg-white rounded-lg shadow space-y-4">
     <div class="aspect-square w-[4.5rem]">
       <img src="Logo_Resqbite.png" class="rounded-lg object-cover w-full h-full mx-auto mb-1">
@@ -49,6 +50,8 @@
       <label class="block text-sm font-medium text-gray-700 mb-1">Alamat</label>
       <input type="text" name="address" id="address" class="w-full border-gray-300 rounded-lg shadow-sm" required />
     </div>
+    <!-- Map -->
+    <div id="map" class="max-w-xl mx-auto my-6" style="height: 400px;"></div>
     <div>
       <label class="block text-sm font-medium text-gray-700 mb-1">Latitude</label>
       <input type="text" name="latitude" id="latitude" class="w-full border-gray-300 rounded-lg shadow-sm" readonly required />
@@ -61,9 +64,6 @@
       <button type="submit" class="w-full bg-orange-500 text-white py-2 px-4 rounded-lg hover:bg-amber-500">Submit</button>
     </div>
   </form>
-
-  <!-- Map -->
-  <div id="map" class="max-w-xl mx-auto my-6" style="height: 400px;"></div>
 
   <!-- Leaflet Script -->
   <script>
@@ -117,6 +117,28 @@
         setMarker(latlng, 'Manually selected');
       });
     });
+
+
+    function showSuccessAlert() {
+    Swal.fire({
+      title: 'Success!',
+      text: 'Akun berhasil dibuat!',
+      icon: 'success',
+      confirmButtonText: 'OK',
+      customClass: {
+        confirmButton: 'bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded !important'
+      },
+      buttonsStyling: false
+    }).then(() => {
+      window.location.href = '/'; // ganti sesuai rute home kamu
+    });
+  }
+
+  // Tangani submit form
+  document.getElementById('myForm').addEventListener('submit', function (e) {
+    e.preventDefault(); // Cegah pengiriman form
+    showSuccessAlert(); // Tampilkan alert lalu redirect
+  });
   </script>
   
 </body>

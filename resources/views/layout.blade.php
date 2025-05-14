@@ -113,7 +113,7 @@
                 <div class="flex flex-col items-center">
                     <img class="h-24 w-auto" src="/Logo_Resqbite.png" alt="ResQBite">
                     <div class="text-lg font-semibold mb-3">Ingin menggabungkan usaha Anda di platform kami?</div>
-                    <a href="#"
+                    <a href="{{ route('formRegisterUMKM') }}"
                         class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-full font-bold">KLIK
                         DISINI!</a>
                 </div>

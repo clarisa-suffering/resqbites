@@ -7,6 +7,7 @@
   <!-- Tailwind and Flowbite -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/flowbite@1.5.0/dist/flowbite.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
@@ -18,9 +19,9 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
   <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 
-  <title>Form Daftar UMKM</title>
+  <title>Form Registrasi UMKM</title>
 </head>
-<body class="bg-orange-200">
+<body class="bg-gray-100">
   <form id="myForm" action="{{ route('insertStore') }}" method="POST" enctype="multipart/form-data" class="max-w-xl mx-auto p-6 bg-white rounded-lg shadow space-y-4">
     @csrf
     <div class="aspect-square w-[4.5rem]">
@@ -205,6 +206,27 @@
     });
   });
 
+
+  function showSuccessAlert() {
+    Swal.fire({
+      title: 'Success!',
+      text: 'Usaha anda berhasil didaftarkan!',
+      icon: 'success',
+      confirmButtonText: 'OK',
+      customClass: {
+        confirmButton: 'bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded !important'
+      },
+      buttonsStyling: false
+    }).then(() => {
+      window.location.href = '/'; // ganti sesuai rute home kamu
+    });
+  }
+
+  // Tangani submit form
+  document.getElementById('myForm').addEventListener('submit', function (e) {
+    e.preventDefault(); // Cegah pengiriman form
+    showSuccessAlert(); // Tampilkan alert lalu redirect
+  });
   </script>
   
 </body>

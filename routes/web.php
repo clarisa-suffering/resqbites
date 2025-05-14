@@ -12,9 +12,9 @@ Route::get('/formRegisterUser', function () {
     return view('formRegisterUser');
 });
 
-Route::get('/formUMKM', function () {
+Route::get('/formRegisterUMKM', function () {
     return view('formUMKM');
-});
+})->name('formRegisterUMKM');
 
 Route::post('/insertStore',[StoreController::class, 'insert'])->name('insertStore');
 
