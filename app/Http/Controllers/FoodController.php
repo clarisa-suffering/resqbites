@@ -9,6 +9,6 @@ use Illuminate\Support\Facades\Route;
 class FoodController extends Controller
 {
  public function display(){
-    return view('katalogMenu');
+    return view('browseMenu');
  }   
 }

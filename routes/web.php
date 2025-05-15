@@ -22,7 +22,14 @@ Route::get('/order', function () {
     return view('orderpage');
 })->name('orderPage');
 
+Route::get('/katalog', function () {
+    return view('katalogMenu');
+});
+
 Route::get('/menu', [FoodController::class, 'display'])->name('foods.display');
+Route::get('/restaurants', function(){
+    return view('restaurants');
+});
 
 Route::get('/order/delivery', function () {
     return view('deliverypage');

@@ -36,9 +36,9 @@
                         Browse Menu
                     </a>
 
-                    <a href=""
+                    <a href="{{url('restaurants')}}"
                         class="rounded-md px-3 py-2 text-sm font-medium 
-        {{ Request::is('') ? 'bg-amber-500 text-white' : 'text-gray-100 hover:bg-amber-500 hover:text-white' }}">
+        {{ Request::is('restaurants') ? 'bg-amber-500 text-white' : 'text-gray-100 hover:bg-amber-500 hover:text-white' }}">
                         Restaurants
                     </a>
 
