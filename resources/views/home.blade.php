@@ -15,11 +15,11 @@
         </div>
         <!-- Item 2 -->
         <div class="hidden duration-700 ease-in-out h-full" data-carousel-item>
-            <img src="https://i.pinimg.com/736x/cc/e1/31/cce131952f9fd2601714682790d5602d.jpg" class="absolute inset-0 w-full h-full object-cover" alt="...">
+            <img src="Carousel_Burger_3.png" class="absolute inset-0 w-full h-full object-cover" alt="...">
         </div>
         <!-- Item 3 -->
         <div class="hidden duration-700 ease-in-out h-full" data-carousel-item>
-            <img src="https://www.pixelldesign.com/wp-content/uploads/desain-banner-spanduk-iklan-makanan-rumah-makan-kedai.webp" class="absolute inset-0 w-full h-full object-cover" alt="...">
+            <img src="Carousel_Minimarket_4.png" class="absolute inset-0 w-full h-full object-cover" alt="...">
         </div>
         <!-- Item 4 -->
         <div class="hidden duration-700 ease-in-out h-full" data-carousel-item>
