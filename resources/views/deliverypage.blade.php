@@ -16,7 +16,6 @@
     </div>
 
     <!-- Carousel promo -->
-    <!-- Carousel Promo -->
     <div class="relative max-w-6xl mx-auto mt-10 py-8 px-4">
         <!-- Viewport untuk 4 gambar -->
         <div class="overflow-hidden">
@@ -30,10 +29,10 @@
                 </div>
                 <!-- Slide 2 -->
                 <div class="flex gap-4 shrink-0 w-full justify-center">
-                    <img class="h-48 w-auto rounded-xl shadow-md" src="/poster_ayam.jpg" alt="poster ayam">
-                    <img class="h-48 w-auto rounded-xl shadow-md" src="/poster_bakso.jpeg" alt="poster bakso">
-                    <img class="h-48 w-auto rounded-xl shadow-md" src="/poster_croissant.jpeg" alt="poster croissant">
-                    <img class="h-48 w-auto rounded-xl shadow-md" src="/poster_udangkeju.jpeg" alt="poster udangkeju">
+                    <img class="h-48 w-auto rounded-xl shadow-md" src="/poster_eskrim.jpg" alt="poster ayam">
+                    <img class="h-48 w-auto rounded-xl shadow-md" src="/poster_pizza.jpg" alt="poster bakso">
+                    <img class="h-48 w-auto rounded-xl shadow-md" src="/poster_ricebox.jpg" alt="poster croissant">
+                    <img class="h-48 w-auto rounded-xl shadow-md" src="/poster_minimarket.jpg" alt="poster udangkeju">
                 </div>
             </div>
         </div>
