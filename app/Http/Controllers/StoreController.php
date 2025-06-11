@@ -1,54 +1,54 @@
 <?php
 
-namespace App\Http\Controllers;
+    namespace App\Http\Controllers;
 
-use App\Models\PromotionPack;
-use App\Models\Store;
-use Illuminate\Http\Request;
+    use App\Models\PromotionPack;
+    use App\Models\Store;
+    use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Auth;
+    use Illuminate\Support\Facades\Storage;
 
-class StoreController extends Controller
-{
-    public function insert(Request $request){
-        //buat obj baru
-        $store = new Store;
-        $store->name = $request->name;
-        $store->close_time = $request->close_time;
-        $store->address = $request->address;
-        $store->latitude = $request->latitude;
-        $store->longitude = $request->longitude;
-        $store->phone = $request->phone;
-        $store->user_id = 1;
+    class StoreController extends Controller
+    {
+        public function insert(Request $request)
+        {
+            // Validasi data (hapus selectedIds karena tidak dipakai)
+            $validated = $request->validate([
+                'name' => 'required|string|max:255',
+                'close_time' => 'required|date_format:H:i',
+                'address' => 'required|string|max:255',
+                'latitude' => 'required|numeric',
+                'longitude' => 'required|numeric',
+                'phone' => 'required|string|max:20',
+                'logo' => 'nullable|image|max:2048', // max 2MB
+            ]);
 
-        if ($request->hasFile('logo')) {
-            $file = $request->file('logo');
-            $fileName = time() . '_' . $file->getClientOriginalName();
-            $filePath = $file->storeAs('uploads', $fileName, 'public');
+            $store = new Store();
+            $store->name = $validated['name'];
+            $store->close_time = $validated['close_time'];
+            $store->address = $validated['address'];
+            $store->latitude = $validated['latitude'];
+            $store->longitude = $validated['longitude'];
+            $store->phone = $validated['phone'];
+            $store->user_id = Auth::id() ?? 1; // fallback ke user 1 jika belum login
 
-            $store->photo_name = $fileName;
-            $store->photo_path = '/storage/' . $filePath;
-        }
-    
-        //insert ke db
-        $store->save();
+            if ($request->hasFile('logo')) {
+                $file = $request->file('logo');
+                $fileName = time() . '_' . $file->getClientOriginalName();
+                $filePath = $file->storeAs('uploads', $fileName, 'public');
 
-        $storeId = $store->id;
+                $store->photo_name = $fileName;
+                $store->photo_path = Storage::url($filePath);
+            }
 
-    // Get selected promo IDs from hidden input
-    $selectedIdsString = $request->input('selectedIds');  // e.g., "1,3,5"
+            $store->save();
 
-    if (!empty($selectedIdsString)) {
-        $selectedIds = explode(',', $selectedIdsString);  // ['1', '3', '5']
+            // Simpan promo default (misal promotion_id = 1)
+            PromotionPack::create([
+                'promotion_id' => 1,  // promo default
+                'store_id' => $store->id,
+            ]);
 
-        foreach ($selectedIds as $promoId) {
-            $promotionPack = new PromotionPack;
-            $promotionPack->promotion_id= $promoId;
-            $promotionPack->store_id= $storeId;
-
-            $promotionPack->save();
+            return redirect()->route('home')->with('success', 'Store berhasil ditambahkan dengan promo default.');
         }
     }
-
-        return redirect()->route('home');
-
-    }
-}

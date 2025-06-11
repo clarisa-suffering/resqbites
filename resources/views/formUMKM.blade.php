@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
+
   <!-- Tailwind and Flowbite -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/flowbite@1.5.0/dist/flowbite.min.js"></script>
@@ -21,213 +22,211 @@
 
   <title>Form Registrasi UMKM</title>
 </head>
-<body class="bg-gray-100">
-  <form id="myForm" action="{{ route('insertStore') }}" method="POST" enctype="multipart/form-data" class="max-w-xl mx-auto p-6 bg-white rounded-lg shadow space-y-4">
-    @csrf
-    <div class="aspect-square w-[4.5rem]">
-        <img src="Logo_Resqbite.png" class="rounded-lg object-cover w-full h-full mx-auto mb-1">
-    </div>
-    <div class="text-center mb-3">
-        <h2 class="text-xl font-bold mb-6">Form Pendaftaran UMKM</h2>
-    </div>
-    <div>
-      <label class="block text-sm font-medium text-gray-700 mb-1">Logo Usaha</label>
-      <input type="file" name="logo" accept="image/*" class="w-full border-gray-300 shadow-sm" required>
-    </div>
-    <div>
-      <label class="block text-sm font-medium text-gray-700 mb-1">Nama Usaha</label>
-      <input type="text" name="name" class="w-full border-gray-300 rounded-lg shadow-sm" required />
-    </div>
-    <div>
-      <label class="block text-sm font-medium text-gray-700 mb-1">Alamat Usaha</label>
-      <input type="text" name="address" id="address" class="w-full border-gray-300 rounded-lg shadow-sm" required />
-    </div>
-     <!-- Map -->
-    <div id="map" class="max-w-xl mx-auto my-6" style="height: 400px;"></div>
-    <div>
-      <label class="block text-sm font-medium text-gray-700 mb-1">Latitude</label>
-      <input type="text" name="latitude" id="latitude" class="w-full border-gray-300 rounded-lg shadow-sm" readonly required />
-    </div>
-    <div>
-      <label class="block text-sm font-medium text-gray-700 mb-1">Longitude</label>
-      <input type="text" name="longitude" id="longitude" class="w-full border-gray-300 rounded-lg shadow-sm" readonly required />
-    </div>
-    <div>
-      <label class="block text-sm font-medium text-gray-700 mb-1">Close Time</label>
-      <input type="time" name="close_time" class="w-full border-gray-300 rounded-lg shadow-sm" required />
-    </div>
-    <div>
-        <label class="block text-sm font-medium text-gray-700 mb-1">Phone</label>
-        <input type="tel" name="phone" class="w-full border-gray-300 rounded-lg shadow-sm" />
-      </div>
-    
-      <h2 class="text-lg font-bold mb-4">Paket Promosi</h2>
+<!-- [Kepala HTML tetap seperti kode Anda sebelumnya] -->
+<!-- ... (jangan diubah bagian head-nya) ... -->
 
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-        <!-- CARD EXAMPLES -->
-          <!-- 6 cards -->
-          <div data-id="1" class="promo-card cursor-pointer max-w-xs p-3 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700  flex flex-col">
-            <h5 class="mb-1 text-lg font-semibold text-gray-900 dark:text-white">Promosi Notifikasi Email</h5>
-            <p class="text-xs text-gray-700 dark:text-gray-400">Mengirimkan 1x notifikasi email kepada 50 user bahwa usaha baru saja bergabung ke aplikasi</p>
-            <div class="mt-auto">
-              <p class="text-sm font-semibold text-gray-700 dark:text-gray-400 mt-3"><s>Rp 25.000</s></p>
-              <p class="text-sm font-semibold text-red-700 dark:text-gray-400">Rp 15.000</p>
-            </div>
-          </div>
-          <div data-id="2" class="promo-card cursor-pointer max-w-xs p-3 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 flex flex-col">
-            <h5 class="mb-1 text-lg font-semibold text-gray-900 dark:text-white">Promosi di Halaman Utama</h5>
-            <p class="text-xs text-gray-700 dark:text-gray-400">Menampilkan banner tentang usaha di bagian slider di Halaman Utama selama 3 hari
-              Banner akan ditampilkan kepada 50 user secara acak</p>
-              <div class="mt-auto">
-                <p class="text-sm font-semibold text-gray-700 dark:text-gray-400 mt-3"><s>Rp 35.000</s></p>
-                <p class="text-sm font-semibold text-red-700 dark:text-gray-400">Rp 25.000</p>
-              </div>
-          </div>
-          <div data-id="3" class="promo-card cursor-pointer max-w-xs p-3 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 flex flex-col">
-            <h5 class="mb-1 text-lg font-semibold text-gray-900 dark:text-white">Promosi Pop-Up</h5>
-            <p class="text-sm text-gray-700 dark:text-gray-400">Menampilkan pop-up promosi usaha pada saat user membuka aplikasi yang berlangsung selama 3 hari
-              Pop-up ditampilkan kepada 50 user dengan lokasi terdekat dengan tempat usaha</p>
-              <div class="mt-auto">
-                <p class="text-sm font-semibold text-gray-700 dark:text-gray-400 mt-3"><s>Rp 40.000</s></p>
-                <p class="text-sm font-semibold text-red-700 dark:text-gray-400">Rp 30.000</p>
-              </div>
-          </div>
-          <div data-id="4" class="promo-card cursor-pointer max-w-xs p-3 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 flex flex-col">
-            <h5 class="mb-1 text-lg font-semibold text-gray-900 dark:text-white">Paket Promosi Notifikasi Email + Promosi di Halaman Utama</h5>
-            <p class="text-sm text-gray-700 dark:text-gray-400">Mengirimkan 1x notifikasi email kepada 50 user bahwa usaha baru saja bergabung ke aplikasi
-              Menampilkan banner tentang usaha di bagian slider di Halaman Utama selama 3 hari kepada 50 user secara acak</p>
-              <div class="mt-auto">
-                <p class="text-sm font-semibold text-gray-700 dark:text-gray-400 mt-3"><s>Rp 55.000</s></p>
-                <p class="text-sm font-semibold text-red-700 dark:text-gray-400">Rp 35.000</p>
-              </div>
-          </div>
-          <div data-id="5" class="promo-card cursor-pointer max-w-xs p-3 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 flex flex-col">
-            <h5 class="mb-1 text-lg font-semibold text-gray-900 dark:text-white">Paket Promosi Notifikasi Email + Promosi Pop-Up</h5>
-            <p class="text-sm text-gray-700 dark:text-gray-400">Mengirimkan 1x notifikasi email kepada 50 user bahwa usaha baru saja bergabung ke aplikasi
-              Menampilkan pop-up promosi usaha pada saat user membuka aplikasi selama 3 hari kepada 50 user dengan lokasi terdekat dengan tempat usaha</p>
-              <div class="mt-auto">
-                <p class="text-sm font-semibold text-gray-700 dark:text-gray-400 mt-3"><s>Rp 60.000</s></p>
-                <p class="text-sm font-semibold text-red-700 dark:text-gray-400">Rp 40.000</p>
-              </div>
-          </div>
-          <div data-id="6" class="promo-card cursor-pointer max-w-xs p-3 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 flex flex-col">
-            <h5 class="mb-1 text-lg font-semibold text-gray-900 dark:text-white">Paket Promosi Combo</h5>
-            <p class="text-sm text-gray-700 dark:text-gray-400">Mengirimkan 1x notifikasi email kepada 50 user bahwa usaha baru saja bergabung ke aplikasi
-              Menampilkan pop-up promosi usaha pada saat user membuka aplikasi selama 3 hari kepada 50 user dengan lokasi terdekat dengan tempat usaha
-              Menampilkan banner tentang usaha di bagian slider di Halaman Utama selama 3 hari kepada 50 user secara acak</p>
-              <div class="mt-auto">
-                <p class="text-sm font-semibold text-gray-700 dark:text-gray-400 mt-3"><s>Rp 70.000</s></p>
-                <p class="text-sm font-semibold text-red-700 dark:text-gray-400">Rp 50.000</p>
-              </div>
-          </div>
+<body class="bg-gray-100">
+  <div class="bg-orange-500 top-0 w-full z-50">
+    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+      <div class="relative flex h-16 items-center justify-between">
+        <!-- Logo -->
+        <div class="flex items-center">
+          <img class="h-20 w-auto" src="/Logo_Resqbite.png" alt="ResQBite">
         </div>
-      
-        <!-- Hidden input to store selected IDs -->
-        <input type="hidden" name="selectedIds" id="selectedIds">
       </div>
+    </div>
+  </div>
+  <form id="myForm" action="{{ route('insertStore') }}" method="POST" enctype="multipart/form-data" class="max-w-3xl mx-auto p-6 bg-white rounded-xl shadow space-y-4 mt-6 mb-6">
+    @csrf
+
+    <!-- Logo App -->
+    <div class="flex justify-center">
+      <img src="Logo_Resqbite.png" class="w-20 h-20 object-cover rounded-lg" />
+    </div>
+    <h2 class="text-center text-2xl font-bold mb-4 text-orange-600">Form Pendaftaran UMKM</h2>
+
+    <!-- Input Fields -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <label class="block text-sm font-semibold mb-1">Logo Usaha</label>
+        <input type="file" name="logo" accept="image/*" required class="w-full border-gray-300 rounded-md shadow-sm" />
+      </div>
+      <div>
+        <label class="block text-sm font-semibold mb-1">Nama Usaha</label>
+        <input type="text" name="name" required class="w-full border-gray-300 rounded-md shadow-sm" />
+      </div>
+      <div class="md:col-span-2">
+        <label class="block text-sm font-semibold mb-1">Alamat Usaha</label>
+        <input type="text" id="address" name="address" required class="w-full border-gray-300 rounded-md shadow-sm" />
+      </div>
+      <div class="md:col-span-2">
+        <div id="map" class="w-full rounded-md" style="height: 400px;"></div>
+      </div>
+      <div>
+        <label class="block text-sm font-semibold mb-1">Latitude</label>
+        <input type="text" name="latitude" id="latitude" readonly required class="w-full border-gray-300 rounded-md shadow-sm bg-gray-100" />
+      </div>
+      <div>
+        <label class="block text-sm font-semibold mb-1">Longitude</label>
+        <input type="text" name="longitude" id="longitude" readonly required class="w-full border-gray-300 rounded-md shadow-sm bg-gray-100" />
+      </div>
+      <div>
+        <label class="block text-sm font-semibold mb-1">Jam Tutup</label>
+        <input type="time" name="close_time" required class="w-full border-gray-300 rounded-md shadow-sm" />
+      </div>
+      <div>
+        <label class="block text-sm font-semibold mb-1">No. Telepon</label>
+        <input type="tel" name="phone" required class="w-full border-gray-300 rounded-md shadow-sm" />
+      </div>
+    </div>
+
+    <!-- Promo -->
+    <h3 class="text-lg font-semibold mt-6">Paket Promosi</h3>
+
+    <div id="promoContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto"></div>
+
+
+    <!-- Submit -->
     <div class="pt-4">
-      <button type="submit" class="w-full bg-orange-500 text-white py-2 px-4 rounded-lg hover:bg-amber-500">Submit</button>
+      <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-md text-lg font-medium">
+        Daftar Sekarang
+      </button>
     </div>
   </form>
 
-  <!-- Leaflet Script -->
+  <!-- JS: Leaflet & Promo -->
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const addressInput = document.getElementById('address');
-      const latitudeInput = document.getElementById('latitude');
-      const longitudeInput = document.getElementById('longitude');
-  
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('myForm');
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault(); // cegah submit default (bisa dihilangkan jika mau submit normal)
+
+        // Contoh: jalankan validasi atau ajax dulu, lalu tampilkan swal
+        // Kalau submit normal, letakkan Swal setelah form submit berhasil diproses di server
+
+        Swal.fire({
+          icon: 'success',
+          title: 'Berhasil!',
+          text: 'Form pendaftaran UMKM berhasil dikirim.',
+          confirmButtonColor: '#f97316' // warna oranye sesuai theme tailwind
+        }).then(() => {
+          // Jika mau submit form setelah alert OK:
+          form.submit();
+        });
+      });
+      const promos = {
+        1: {
+          title: 'Notifikasi Email',
+          price: 'Rp 15.000',
+          original: 'Rp 25.000',
+          description: 'Mengirimkan 1x notifikasi email kepada 50 user bahwa usaha baru saja bergabung ke aplikasi.'
+        },
+        2: {
+          title: 'Halaman Utama',
+          price: 'Rp 25.000',
+          original: 'Rp 35.000',
+          description: 'Menampilkan banner tentang usaha di bagian slider di Halaman Utama selama 3 hari Banner akan ditampilkan kepada 50 user secara acak.'
+        },
+        3: {
+          title: 'Pop-Up',
+          price: 'Rp 30.000',
+          original: 'Rp 40.000',
+          description: 'Menampilkan pop-up promosi usaha pada saat user membuka aplikasi yang berlangsung selama 3 hari Pop-up ditampilkan kepada 50 user dengan lokasi terdekat dengan tempat usaha.'
+        },
+        4: {
+          title: 'Email + Halaman Utama',
+          price: 'Rp 35.000',
+          original: 'Rp 55.000',
+          description: 'Mengirimkan 1x notifikasi email kepada 50 user bahwa usaha baru saja bergabung ke aplikasi Menampilkan banner tentang usaha di bagian slider di Halaman Utama selama 3 hari kepada 50 user secara acak.'
+        },
+        5: {
+          title: 'Email + Pop-Up',
+          price: 'Rp 40.000',
+          original: 'Rp 60.000',
+          description: 'Mengirimkan 1x notifikasi email kepada 50 user bahwa usaha baru saja bergabung ke aplikasi Menampilkan pop-up promosi usaha pada saat user membuka aplikasi selama 3 hari kepada 50 user dengan lokasi terdekat dengan tempat usaha.'
+        },
+        6: {
+          title: 'Combo',
+          price: 'Rp 50.000',
+          original: 'Rp 70.000',
+          description: 'Mengirimkan 1x notifikasi email kepada 50 user bahwa usaha baru saja bergabung ke aplikasi Menampilkan pop-up promosi usaha pada saat user membuka aplikasi selama 3 hari kepada 50 user dengan lokasi terdekat dengan tempat usaha Menampilkan banner tentang usaha di bagian slider di Halaman Utama selama 3 hari kepada 50 user secara acak.'
+        }
+      };
+
+      const promoContainer = document.getElementById('promoContainer');
+
+      for (const id in promos) {
+        const promo = promos[id];
+        const div = document.createElement('div');
+        div.className = `promo-card cursor-pointer border border-gray-300 rounded-lg p-5 bg-white shadow-sm transition 
+  hover:shadow-lg hover:border-orange-500 max-w-xs mx-auto`;
+        div.innerHTML = `
+      <h5 class="font-semibold text-md text-gray-800 mb-1">${promo.title}</h5>
+      <p class="text-sm text-gray-600 mb-2">${promo.description}</p>
+      <div class="text-sm">
+        <p class="text-gray-400 line-through">${promo.original}</p>
+        <p class="text-orange-600 font-semibold">${promo.price}</p>
+      </div>
+    `;
+        promoContainer.appendChild(div);
+      }
+
       const map = L.map('map').setView([-6.2, 106.8], 5);
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap contributors'
       }).addTo(map);
-  
-      let marker = null;
-  
-      function setMarker(latlng, text) {
+      let marker;
+      const addressInput = document.getElementById('address');
+      const latInput = document.getElementById('latitude');
+      const lngInput = document.getElementById('longitude');
+      const geocoder = L.Control.Geocoder.nominatim();
+
+      function setMarker(latlng, text = '') {
         if (marker) map.removeLayer(marker);
         marker = L.marker(latlng).addTo(map);
         if (text) marker.bindPopup(text).openPopup();
       }
-  
-      // This is the correct and modern usage
-      const geocoder = L.Control.Geocoder.nominatim();
-  
-      // Get coordinates when address is typed
-      addressInput.addEventListener('blur', function () {
-        const address = addressInput.value.trim();
+
+      addressInput.addEventListener('blur', () => {
+        const address = addressInput.value;
         if (!address) return;
-  
-        geocoder.geocode(address, function (results) {
-          if (results && results.length > 0) {
-            const result = results[0];
-            const latlng = result.center;
-  
-            latitudeInput.value = latlng.lat.toFixed(6);
-            longitudeInput.value = latlng.lng.toFixed(6);
-  
-            map.setView(latlng, 13);
-            setMarker(latlng, 'Address found');
-          } else {
-            alert('Address not found.');
+        geocoder.geocode(address, results => {
+          if (results.length > 0) {
+            const latlng = results[0].center;
+            map.setView(latlng, 15);
+            latInput.value = latlng.lat.toFixed(6);
+            lngInput.value = latlng.lng.toFixed(6);
+            setMarker(latlng, 'Lokasi ditemukan');
           }
         });
       });
-  
-      //Manual coordinate selection from map
-      map.on('click', function (e) {
+
+      map.on('click', e => {
         const latlng = e.latlng;
-        latitudeInput.value = latlng.lat.toFixed(6);
-        longitudeInput.value = latlng.lng.toFixed(6);
-        setMarker(latlng, 'Manually selected');
+        latInput.value = latlng.lat.toFixed(6);
+        lngInput.value = latlng.lng.toFixed(6);
+        setMarker(latlng, 'Dipilih manual');
+      });
+
+      // Promo selection
+      const selected = [];
+      const selectedInput = document.getElementById('selectedIds');
+      document.querySelectorAll('.promo-card').forEach(card => {
+        card.addEventListener('click', () => {
+          const id = card.getAttribute('data-id');
+          if (selected.includes(id)) {
+            selected.splice(selected.indexOf(id), 1);
+            card.classList.remove('ring-2', 'ring-orange-500', 'bg-orange-50');
+          } else {
+            selected.push(id);
+            card.classList.add('ring-2', 'ring-orange-500', 'bg-orange-50');
+          }
+          selectedInput.value = selected.join(',');
+        });
       });
     });
-
-
-  const selectedIds = [];
-  const selectedInput = document.getElementById('selectedIds');
-
-  document.querySelectorAll('.promo-card').forEach(card => {
-    card.addEventListener('click', function () {
-      const id = this.dataset.id;
-
-      if (selectedIds.includes(id)) {
-        // Deselect if already selected
-        selectedIds.splice(selectedIds.indexOf(id), 1);
-        this.classList.remove('border-orange-500', 'ring', 'ring-orange-300');
-      } else {
-        // Select if not yet selected
-        selectedIds.push(id);
-        this.classList.add('border-orange-500', 'ring', 'ring-orange-300');
-      }
-
-      // Update hidden input value
-      selectedInput.value = selectedIds.join(',');
-    });
-  });
-
-
-  function showSuccessAlert() {
-    Swal.fire({
-      title: 'Success!',
-      text: 'Usaha anda berhasil didaftarkan!',
-      icon: 'success',
-      confirmButtonText: 'OK',
-      customClass: {
-        confirmButton: 'bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded !important'
-      },
-      buttonsStyling: false
-    }).then(() => {
-      window.location.href = '/'; // ganti sesuai rute home kamu
-    });
-  }
-
-  // Tangani submit form
-  document.getElementById('myForm').addEventListener('submit', function (e) {
-    e.preventDefault(); // Cegah pengiriman form
-    showSuccessAlert(); // Tampilkan alert lalu redirect
-  });
   </script>
-  
 </body>
+
 </html>
