@@ -10,47 +10,31 @@
 
 <body class="bg-gray-100">
 <!-- Navbar -->
-<nav class="bg-orange-500 fixed top-0 w-full z-50">
-    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-        <div class="relative flex h-16 items-center justify-between">
-            <!-- Logo -->
-            <div class="flex items-center">
-                <img class="h-20 w-auto" src="/Logo_Resqbite.png" alt="ResQBite">
-            </div>
+    <nav class="bg-orange-500 fixed top-0 w-full z-50">
+        <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+            <div class="relative flex h-16 items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <img class="h-20 w-auto" src="/Logo_Resqbite.png" alt="ResQBite">
+                </div>
 
-            <!-- Desktop Menu -->
-            <div class="hidden sm:flex sm:items-center sm:space-x-4">
-                <a href="{{ route('home') }}"
-                    class="rounded-md px-3 py-2 text-sm font-medium 
-        {{ Route::currentRouteName() == 'home' ? 'bg-amber-500 text-white' : 'text-gray-100 hover:bg-amber-500 hover:text-white' }}">
-                    Home
-                </a>
-
-                <a href="{{ route('foods.display') }}"
-                    class="rounded-md px-3 py-2 text-sm font-medium 
-        {{ Route::currentRouteName() == 'foods.display' ? 'bg-amber-500 text-white' : 'text-gray-100 hover:bg-amber-500 hover:text-white' }}">
-                    Browse Menu
-                </a>
-
-                <a href="{{url('restaurants')}}"
-                    class="rounded-md px-3 py-2 text-sm font-medium 
-        {{ Request::is('restaurants') ? 'bg-amber-500 text-white' : 'text-gray-100 hover:bg-amber-500 hover:text-white' }}">
-                    Restaurants
-                </a>
-
-                <a href="{{ route('orderPage') }}"
-                    class="rounded-md px-3 py-2 text-sm font-medium 
-        {{ Route::currentRouteName() == 'orderPage' ? 'bg-amber-500 text-white' : 'text-gray-100 hover:bg-amber-500 hover:text-white' }}">
-                    Keranjang
-                </a>
-
-                <a href="{{ route('sellerdashboard') }}"
-                    class="rounded-md px-3 py-2 text-sm font-medium 
+                <!-- Desktop Menu -->
+                <div class="hidden sm:flex sm:items-center sm:space-x-4">
+                    <a href="{{ route('sellerdashboard') }}"
+                        class="rounded-md px-3 py-2 text-sm font-medium 
         {{ Route::currentRouteName() == 'sellerdashboard' ? 'bg-amber-500 text-white' : 'text-gray-100 hover:bg-amber-500 hover:text-white' }}">
-                    Seller
-                </a>
+                        Seller Dashboard
+                    </a>
+                    <!-- Tombol Logout -->
+                    <form action="{{ route('home') }}" method="GET">
+                        <button
+                            class="ml-4 inline-block rounded-full bg-white text-orange-500 font-semibold px-5 py-2
+        hover:bg-amber-500 hover:text-white transition-colors duration-300">
+                            Logout
+                        </button>
+                    </form>
 
-            </div>
+                </div>
 
 
             <!-- Mobile Menu Button (Right aligned) -->
@@ -82,12 +66,12 @@
                 class="block rounded-md px-3 py-2 text-sm font-medium text-gray-100 hover:bg-amber-500 hover:text-white">Track
                 Orders</a>
             <a href="{{ route('sellerdashboard') }}"
-                class="block rounded-md px-3 py-2 text-sm font-medium text-gray-100 hover:bg-amber-500 hover:text-white">Seller</a>
+                class="block rounded-md px-3 py-2 text-sm font-medium text-gray-100 hover:bg-amber-500 hover:text-white">Seller Dashboard</a>
         </div>
     </div>
 </nav>
 <div class="max-w-xl mx-auto mt-24 p-6 bg-white rounded-xl shadow">
-    <h2 class="text-2xl font-bold mb-4 text-[#123f11]">Add New Product</h2>
+    <h2 class="text-2xl font-bold mb-4 text-[#123f11]">Add Product</h2>
     <form action="{{ route('seller.products.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="mb-4">
@@ -124,7 +108,7 @@
     </form>
 </div>
 <!-- Footer -->
-<footer class="bg-white shadow-inner mt-10">
+<footer class="bg-orange-500 shadow-inner mt-10">
     <div class="max-w-7xl mx-auto py-4 px-4 text-center text-gray-500 text-xs select-none">
         &copy; ResqBites 2025, All Rights Reserved.
     </div>

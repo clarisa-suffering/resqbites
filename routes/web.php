@@ -23,6 +23,16 @@ Route::middleware('guest')->group(function () {
     Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 });
 
+//DASHBOARD SELLER
+Route::get('/seller/dashboard', function () {
+    return view('sellerdashboard');
+})->name('sellerdashboard');
+
+//USER HOME
+Route::get('/user/Home', function () {
+    return view('userHome');
+})->name('userHome');
+
 Route::get('/', function () {
     return view('home');
 })->name('home');
@@ -41,9 +51,7 @@ Route::get('/order', function () {
     return view('orderpage');
 })->name('orderPage');
 
-Route::get('/sellerdashboard', function () {
-    return view('sellerdashboard');
-})->name('sellerdashboard');
+
 
 
 Route::get('/katalog', function () {
