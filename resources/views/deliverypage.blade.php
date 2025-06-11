@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-<div class="bg-white min-h-screen ">
+<div class="bg-gray-100 min-h-screen ">
     <!-- Header banner -->
     <div class="bg-green-800 text-white text-left px-6 py-10 relative overflow-hidden">
         <h1 class="text-3xl font-bold px-6 py-10">Thank you for <br><span class="text-orange-400">ResQing the Bites!</span></h1>

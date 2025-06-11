@@ -203,9 +203,9 @@
         Submit
       </button>
     </div>
-<p class="text-sm text-center text-gray-600 mt-4">
-            Sudah punya akun? <a href="{{ url('/login') }}" class="text-orange-600 hover:underline">Login</a>
-        </p>
+    <p class="text-sm text-center text-gray-600 mt-4">
+      Sudah punya akun? <a href="{{ url('/login') }}" class="text-orange-600 hover:underline">Login</a>
+    </p>
   </form>
 
   <!-- Leaflet Script -->
@@ -216,7 +216,7 @@
       const longitudeInput = document.getElementById('longitude');
 
       // Default view: Surabaya area
-      const map = L.map('map').setView([-7.2756, 112.6426], 13);
+      const map = L.map('map').setView([-7.339412, 112.738194], 20);
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap contributors'
       }).addTo(map);
@@ -237,50 +237,68 @@
             longitudeInput.value = pos.lng.toFixed(6);
           });
         }
-        if (popupText) marker.bindPopup(popupText).openPopup();
-
-        latitudeInput.value = latlng.lat.toFixed(6);
-        longitudeInput.value = latlng.lng.toFixed(6);
+        if (popupText) {
+          marker.bindPopup(popupText).openPopup();
+        }
       }
 
-      // Jika ada nilai lama (old value) dari form validation, set marker di situ
-      const oldLat = parseFloat(latitudeInput.value);
-      const oldLng = parseFloat(longitudeInput.value);
-      if (!isNaN(oldLat) && !isNaN(oldLng)) {
-        setMarker({
-          lat: oldLat,
-          lng: oldLng
-        }, 'Lokasi Anda');
-        map.setView([oldLat, oldLng], 15);
+      const geocoder = L.Control.Geocoder.nominatim();
+
+      // Fungsi debounce sederhana untuk delay input
+      function debounce(func, wait) {
+        let timeout;
+        return function(...args) {
+          clearTimeout(timeout);
+          timeout = setTimeout(() => func.apply(this, args), wait);
+        };
       }
 
-      // Geocoding saat alamat diubah (enter key)
-      addressInput.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter') {
-          e.preventDefault();
-          const query = addressInput.value;
-          if (query.length > 3) {
-            L.Control.Geocoder.nominatim().geocode(query, function(results) {
-              if (results.length > 0) {
-                const result = results[0];
-                setMarker(result.center, result.name);
-                map.setView(result.center, 15);
-              } else {
-                Swal.fire({
-                  icon: 'warning',
-                  title: 'Lokasi tidak ditemukan',
-                  text: 'Coba masukkan alamat yang lebih lengkap atau berbeda.',
-                });
-              }
+      // Cari alamat dari input, update map dan koordinat
+      function searchAddress() {
+        const address = addressInput.value.trim();
+        if (!address) return;
+
+        geocoder.geocode(address, function(results) {
+          if (results && results.length > 0) {
+            const result = results[0];
+            const latlng = result.center;
+
+            latitudeInput.value = latlng.lat.toFixed(6);
+            longitudeInput.value = latlng.lng.toFixed(6);
+
+            map.setView(latlng, 16);
+            setMarker(latlng, `<b>Alamat ditemukan:</b><br>${result.name}`);
+          } else {
+            Swal.fire({
+              icon: 'warning',
+              title: 'Alamat tidak ditemukan',
+              text: 'Coba masukkan alamat yang lebih lengkap atau berbeda.',
+              confirmButtonColor: '#f59e0b',
             });
           }
-        }
+        });
+      }
+
+      const debouncedSearch = debounce(searchAddress, 700);
+
+      // Gunakan event input dengan debounce
+      addressInput.addEventListener('input', debouncedSearch);
+
+      // Klik manual di peta untuk pilih lokasi
+      map.on('click', function(e) {
+        const latlng = e.latlng;
+        latitudeInput.value = latlng.lat.toFixed(6);
+        longitudeInput.value = latlng.lng.toFixed(6);
+        setMarker(latlng, 'Lokasi dipilih manual');
       });
 
-      // Klik map untuk set marker
-      map.on('click', function(e) {
-        setMarker(e.latlng, 'Lokasi Anda');
-      });
+      // Inisialisasi marker dan koordinat awal
+      // Kalau mau mulai kosong, bisa di-comment baris ini:
+      const initialLatLng = map.getCenter();
+      latitudeInput.value = initialLatLng.lat.toFixed(6);
+      longitudeInput.value = initialLatLng.lng.toFixed(6);
+      setMarker(initialLatLng, 'Lokasi awal');
+
       const flashData = document.getElementById('flash-data');
       const successRegister = flashData.dataset.successRegister;
       const successLogin = flashData.dataset.successLogin;

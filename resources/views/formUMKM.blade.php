@@ -49,34 +49,34 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div>
         <label class="block text-sm font-semibold mb-1">Logo Usaha</label>
-        <input type="file" name="logo" accept="image/*" required class="w-full border-gray-300 rounded-md shadow-sm" />
+        <input type="file" name="logo" accept="image/*" required class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400 shadow-sm" />
       </div>
       <div>
         <label class="block text-sm font-semibold mb-1">Nama Usaha</label>
-        <input type="text" name="name" required class="w-full border-gray-300 rounded-md shadow-sm" />
+        <input type="text" name="name" required class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400 shadow-sm" />
       </div>
       <div class="md:col-span-2">
         <label class="block text-sm font-semibold mb-1">Alamat Usaha</label>
-        <input type="text" id="address" name="address" required class="w-full border-gray-300 rounded-md shadow-sm" />
+        <input type="text" id="address" name="address" required class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400 shadow-sm" />
       </div>
       <div class="md:col-span-2">
         <div id="map" class="w-full rounded-md" style="height: 400px;"></div>
       </div>
       <div>
         <label class="block text-sm font-semibold mb-1">Latitude</label>
-        <input type="text" name="latitude" id="latitude" readonly required class="w-full border-gray-300 rounded-md shadow-sm bg-gray-100" />
+        <input type="text" name="latitude" id="latitude" readonly required class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400 shadow-sm" />
       </div>
       <div>
         <label class="block text-sm font-semibold mb-1">Longitude</label>
-        <input type="text" name="longitude" id="longitude" readonly required class="w-full border-gray-300 rounded-md shadow-sm bg-gray-100" />
+        <input type="text" name="longitude" id="longitude" readonly required class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400 shadow-sm" />
       </div>
       <div>
         <label class="block text-sm font-semibold mb-1">Jam Tutup</label>
-        <input type="time" name="close_time" required class="w-full border-gray-300 rounded-md shadow-sm" />
+        <input type="time" name="close_time" required class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400 shadow-sm" />
       </div>
       <div>
         <label class="block text-sm font-semibold mb-1">No. Telepon</label>
-        <input type="tel" name="phone" required class="w-full border-gray-300 rounded-md shadow-sm" />
+        <input type="tel" name="phone" required class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400 shadow-sm" />
       </div>
     </div>
 
@@ -89,9 +89,12 @@
     <!-- Submit -->
     <div class="pt-4">
       <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-md text-lg font-medium">
-        Daftar Sekarang
+        Daftar
       </button>
     </div>
+    <p class="text-sm text-center text-gray-600 mt-4">
+      Sudah punya akun? <a href="{{ url('/login') }}" class="text-orange-600 hover:underline">Login</a>
+    </p>
   </form>
 
   <!-- JS: Leaflet & Promo -->
@@ -100,18 +103,13 @@
       const form = document.getElementById('myForm');
 
       form.addEventListener('submit', function(e) {
-        e.preventDefault(); // cegah submit default (bisa dihilangkan jika mau submit normal)
-
-        // Contoh: jalankan validasi atau ajax dulu, lalu tampilkan swal
-        // Kalau submit normal, letakkan Swal setelah form submit berhasil diproses di server
-
+        e.preventDefault();
         Swal.fire({
           icon: 'success',
           title: 'Berhasil!',
           text: 'Form pendaftaran UMKM berhasil dikirim.',
-          confirmButtonColor: '#f97316' // warna oranye sesuai theme tailwind
+          confirmButtonColor: '#f97316'
         }).then(() => {
-          // Jika mau submit form setelah alert OK:
           form.submit();
         });
       });
@@ -172,42 +170,93 @@
         promoContainer.appendChild(div);
       }
 
-      const map = L.map('map').setView([-6.2, 106.8], 5);
+      const addressInput = document.getElementById('address');
+      const latitudeInput = document.getElementById('latitude');
+      const longitudeInput = document.getElementById('longitude');
+
+      // Default view: Surabaya area
+      const map = L.map('map').setView([-7.342348, 112.741401], 20);
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap contributors'
       }).addTo(map);
-      let marker;
-      const addressInput = document.getElementById('address');
-      const latInput = document.getElementById('latitude');
-      const lngInput = document.getElementById('longitude');
-      const geocoder = L.Control.Geocoder.nominatim();
 
-      function setMarker(latlng, text = '') {
-        if (marker) map.removeLayer(marker);
-        marker = L.marker(latlng).addTo(map);
-        if (text) marker.bindPopup(text).openPopup();
+      let marker = null;
+
+      function setMarker(latlng, popupText) {
+        if (marker) {
+          marker.setLatLng(latlng);
+        } else {
+          marker = L.marker(latlng, {
+            draggable: true
+          }).addTo(map);
+          // Jika marker digeser, update koordinat input
+          marker.on('dragend', function() {
+            const pos = marker.getLatLng();
+            latitudeInput.value = pos.lat.toFixed(6);
+            longitudeInput.value = pos.lng.toFixed(6);
+          });
+        }
+        if (popupText) {
+          marker.bindPopup(popupText).openPopup();
+        }
       }
 
-      addressInput.addEventListener('blur', () => {
-        const address = addressInput.value;
+      const geocoder = L.Control.Geocoder.nominatim();
+
+      // Fungsi debounce sederhana untuk delay input
+      function debounce(func, wait) {
+        let timeout;
+        return function(...args) {
+          clearTimeout(timeout);
+          timeout = setTimeout(() => func.apply(this, args), wait);
+        };
+      }
+
+      // Cari alamat dari input, update map dan koordinat
+      function searchAddress() {
+        const address = addressInput.value.trim();
         if (!address) return;
-        geocoder.geocode(address, results => {
-          if (results.length > 0) {
-            const latlng = results[0].center;
-            map.setView(latlng, 15);
-            latInput.value = latlng.lat.toFixed(6);
-            lngInput.value = latlng.lng.toFixed(6);
-            setMarker(latlng, 'Lokasi ditemukan');
+
+        geocoder.geocode(address, function(results) {
+          if (results && results.length > 0) {
+            const result = results[0];
+            const latlng = result.center;
+
+            latitudeInput.value = latlng.lat.toFixed(6);
+            longitudeInput.value = latlng.lng.toFixed(6);
+
+            map.setView(latlng, 16);
+            setMarker(latlng, `<b>Alamat ditemukan:</b><br>${result.name}`);
+          } else {
+            Swal.fire({
+              icon: 'warning',
+              title: 'Alamat tidak ditemukan',
+              text: 'Coba masukkan alamat yang lebih lengkap atau berbeda.',
+              confirmButtonColor: '#f59e0b',
+            });
           }
         });
+      }
+
+      const debouncedSearch = debounce(searchAddress, 700);
+
+      // Gunakan event input dengan debounce
+      addressInput.addEventListener('input', debouncedSearch);
+
+      // Klik manual di peta untuk pilih lokasi
+      map.on('click', function(e) {
+        const latlng = e.latlng;
+        latitudeInput.value = latlng.lat.toFixed(6);
+        longitudeInput.value = latlng.lng.toFixed(6);
+        setMarker(latlng, 'Lokasi dipilih manual');
       });
 
-      map.on('click', e => {
-        const latlng = e.latlng;
-        latInput.value = latlng.lat.toFixed(6);
-        lngInput.value = latlng.lng.toFixed(6);
-        setMarker(latlng, 'Dipilih manual');
-      });
+      // Inisialisasi marker dan koordinat awal
+      // Kalau mau mulai kosong, bisa di-comment baris ini:
+      const initialLatLng = map.getCenter();
+      latitudeInput.value = initialLatLng.lat.toFixed(6);
+      longitudeInput.value = initialLatLng.lng.toFixed(6);
+      setMarker(initialLatLng, 'Lokasi awal');
 
       // Promo selection
       const selected = [];

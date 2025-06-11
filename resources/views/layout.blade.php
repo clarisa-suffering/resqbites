@@ -19,7 +19,9 @@
             <div class="relative flex h-16 items-center justify-between">
                 <!-- Logo -->
                 <div class="flex items-center">
-                    <img class="h-20 w-auto" src="/Logo_Resqbite.png" alt="ResQBite">
+                    <a href="{{ route('home') }}">
+                        <img class="h-20 w-auto cursor-pointer" src="/Logo_Resqbite.png" alt="ResQBite">
+                    </a>
                 </div>
 
                 <!-- Desktop Menu -->
@@ -48,9 +50,12 @@
                         Keranjang
                     </a>
 
-                    <a href="{{ route('login') }}" class="text-sm text-gray-700 hover:text-orange-600 font-semibold">Login</a>
-
-
+                    <!-- Login button styled as a rounded button with background -->
+                    <a href="{{ route('login') }}"
+                        class="ml-4 inline-block rounded-full bg-white text-orange-500 font-semibold px-5 py-2
+        hover:bg-amber-500 hover:text-white transition-colors duration-300">
+                        Login
+                    </a>
                 </div>
 
 
