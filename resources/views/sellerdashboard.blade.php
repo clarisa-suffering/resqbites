@@ -2,13 +2,9 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@1.5.0/dist/flowbite.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/flowbite@1.5.0/dist/flowbite.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title>Home</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Seller Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -48,8 +44,11 @@
                         Keranjang
                     </a>
 
-                    <a href="{{ route('login') }}" class="text-sm text-gray-700 hover:text-orange-600 font-semibold">Login</a>
-
+                    <a href="{{ route('sellerdashboard') }}"
+                        class="rounded-md px-3 py-2 text-sm font-medium 
+        {{ Route::currentRouteName() == 'sellerdashboard' ? 'bg-amber-500 text-white' : 'text-gray-100 hover:bg-amber-500 hover:text-white' }}">
+                        Seller
+                    </a>
 
                 </div>
 
@@ -88,6 +87,52 @@
         </div>
     </nav>
 
+    <!-- Main content -->
+    <div class="pt-20 max-w-7xl mx-auto px-4">
+        <h1 class="text-3xl font-bold mb-6">Dashboard Seller</h1>
+
+        {{-- Tambahkan isi dashboard sellermu di sini --}}
+        <p>Selamat datang di dashboard penjual kamu!</p>
+        {{-- Contoh data, statistik, dsb --}}
+        <div class="py-10 px-6 max-w-7xl mx-auto">
+
+            {{-- Header dengan tombol Add Product --}}
+            <div class="flex justify-between items-center mb-8">
+                <h1 class="text-2xl md:text-3xl font-bold text-[#123f11]">My Products</h1>
+                <a href="{{ route('addproduct') }}"
+                    class="bg-[#fc8a06] hover:bg-[#e17704] text-white font-semibold py-2 px-5 rounded-xl shadow-md transition">
+                    + Add Product
+                </a>
+
+            </div>
+
+            {{-- Grid produk --}}
+            <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                @for ($i = 1; $i <= 8; $i++)
+                    <div class="bg-white rounded-xl shadow p-4 flex flex-col hover:shadow-lg transition-shadow duration-300">
+                    <div class="relative aspect-[2/1] overflow-hidden rounded-lg mb-3">
+                        <img
+                            src="https://via.placeholder.com/300x160/FC8A06/123F11?text=Product+{{$i}}"
+                            alt="Product {{$i}}"
+                            class="object-cover w-full h-full"
+                            loading="lazy">
+                    </div>
+                    <h2 class="text-lg font-semibold text-[#123f11] mb-1">Product {{$i}}</h2>
+                    <p class="text-gray-700 flex-grow mb-3">This is a short description for product {{$i}} that fits nicely here.</p>
+                    <p class="text-[#fc8a06] font-bold text-lg">Rp {{ number_format(50000 * $i, 0, ',', '.') }}</p>
+        </div>
+        @endfor
+        </section>
+    </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white shadow-inner mt-10">
+        <div class="max-w-7xl mx-auto py-4 px-4 text-center text-gray-500 text-xs select-none">
+            &copy; ResqBites 2025, All Rights Reserved.
+        </div>
+    </footer>
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const menuButton = document.getElementById("mobile-menu-button");
@@ -97,7 +142,6 @@
             menuButton.addEventListener("click", function() {
                 mobileMenu.classList.toggle("hidden");
 
-                // Toggle icon between menu and close
                 if (mobileMenu.classList.contains("hidden")) {
                     menuIconPath.setAttribute("d", "M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5");
                 } else {
@@ -106,32 +150,6 @@
             });
         });
     </script>
-
-    {{-- Main content --}}
-    <div class="pt-16">
-        <main>
-            @yield('content')
-        </main>
-
-        <!-- Partner Invitation Section -->
-        <section class="p-6 mb-2">
-            <div class="text-center mt-10 bg-white py-8 rounded-2xl shadow-md max-w-5xl mx-auto">
-                <div class="flex flex-col items-center">
-                    <img class="h-24 w-auto" src="/Logo_Resqbite.png" alt="ResQBite">
-                    <div class="text-lg font-semibold mb-3">Ingin menggabungkan usaha Anda di platform kami?</div>
-                    <a href="{{ route('formRegisterUMKM') }}"
-                        class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-full font-bold">KLIK
-                        DISINI!</a>
-                </div>
-            </div>
-
-            <!-- Copyright -->
-            <div class="text-center text-xs text-gray-500 mt-6">
-                ResqBites Copyright 2025, All Rights Reserved.<br>
-            </div>
-        </section>
-    </div>
-
 </body>
 
 </html>

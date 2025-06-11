@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->decimal('latitude', 10, 8)->nullable();
             $table->decimal('longitude', 11, 8)->nullable();
-            $table->integer('role')->default('1'); //1 buyer, 2 seller
+            $table->integer('role')->default(1); // angka saja, tanpa tanda kutip
             $table->timestamps();
         });
     }

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('phone');
             $table->string('photo_name');
             $table->string('photo_path');
-            $table->foreignId('user_id')->constrained('user')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

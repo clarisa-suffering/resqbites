@@ -17,4 +17,6 @@ class Food extends Model
     {
         return $this->belongsTo(Store::class, 'id', 'store_id');
     }
+
+    protected $fillable = ['name', 'description', 'price', 'stock', 'photo_name', 'photo_path', 'store_id'];
 }
