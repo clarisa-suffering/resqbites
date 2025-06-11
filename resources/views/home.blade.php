@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('userLayout')
 
 @section('content')
 <div id="default-carousel" class="relative w-full aspect-[3/1]" data-carousel="slide">

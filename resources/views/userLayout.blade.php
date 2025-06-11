@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/flowbite@1.5.0/dist/flowbite.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>ResQbite</title>
-    <link rel="icon" href="/Logo_Resqbite.png"/>
+    <link rel="icon" href="/Logo_Resqbite.png" />
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -33,29 +33,21 @@
                         Home
                     </a>
 
-                    <a href="{{ route('foods.display') }}"
-                        class="rounded-md px-3 py-2 text-sm font-medium 
-        {{ Route::currentRouteName() == 'foods.display' ? 'bg-amber-500 text-white' : 'text-gray-100 hover:bg-amber-500 hover:text-white' }}">
+                    <a href="#" id="browse-menu" class="cursor-pointer rounded-md px-3 py-2 text-sm font-medium 
+{{ Route::currentRouteName() == 'foods.display' ? 'bg-amber-500 text-white' : 'text-gray-100 hover:bg-amber-500 hover:text-white' }}">
                         Browse Menu
                     </a>
 
-                    <a href="{{url('restaurants')}}"
-                        class="rounded-md px-3 py-2 text-sm font-medium 
-        {{ Request::is('restaurants') ? 'bg-amber-500 text-white' : 'text-gray-100 hover:bg-amber-500 hover:text-white' }}">
+                    <a href="#" id="restaurants" class="cursor-pointer rounded-md px-3 py-2 text-sm font-medium 
+{{ Request::is('restaurants') ? 'bg-amber-500 text-white' : 'text-gray-100 hover:bg-amber-500 hover:text-white' }}">
                         Restaurants
                     </a>
 
-                    <a href="{{ route('orderPage') }}"
-                        class="rounded-md px-3 py-2 text-sm font-medium 
-        {{ Route::currentRouteName() == 'orderPage' ? 'bg-amber-500 text-white' : 'text-gray-100 hover:bg-amber-500 hover:text-white' }}">
-                        Keranjang
-                    </a>
-
                     <!-- Logout button styled as a rounded button with background -->
-                    <a href="{{ route('home') }}"
+                    <a href="{{ route('login') }}"
                         class="ml-4 inline-block rounded-full bg-white text-orange-500 font-semibold px-5 py-2
         hover:bg-amber-500 hover:text-white transition-colors duration-300">
-                        Logout
+                        Login
                     </a>
                 </div>
 
@@ -99,6 +91,47 @@
             const menuButton = document.getElementById("mobile-menu-button");
             const mobileMenu = document.getElementById("mobile-menu");
             const menuIconPath = document.getElementById("menu-path");
+
+            menuButton.addEventListener("click", function() {
+                mobileMenu.classList.toggle("hidden");
+
+                if (mobileMenu.classList.contains("hidden")) {
+                    menuIconPath.setAttribute("d", "M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5");
+                } else {
+                    menuIconPath.setAttribute("d", "M6 18L18 6M6 6l12 12");
+                }
+            });
+
+            // SweetAlert for Browse Menu & Restaurants
+            document.getElementById("browse-menu").addEventListener("click", function(e) {
+                e.preventDefault();
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Login Dulu',
+                    text: 'Silakan login untuk melihat menu!',
+                    html: `<p class="mb-4">Silakan login untuk melihat menu!</p><a href="{{ route('login') }}" 
+            class="inline-block rounded-full bg-orange-500 text-white font-semibold px-5 py-2
+                   hover:bg-amber-500 hover:text-white transition-colors duration-300">
+            Login
+         </a>`,
+                });
+            });
+
+            document.getElementById("restaurants").addEventListener("click", function(e) {
+                e.preventDefault();
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Login Dulu',
+                    text: 'Silakan login untuk melihat restoran!',
+                    html: `<p class="mb-4">Silakan login untuk melihat restoran!</p><a href="{{ route('login') }}" 
+            class="inline-block rounded-full bg-orange-500 text-white font-semibold px-5 py-2
+                   hover:bg-amber-500 hover:text-white transition-colors duration-300">
+            Login
+         </a>`,
+                    showConfirmButton: false,
+                    showCloseButton: true, // optional, muncul tombol silang untuk tutup modal
+                });
+            });
 
             menuButton.addEventListener("click", function() {
                 mobileMenu.classList.toggle("hidden");
