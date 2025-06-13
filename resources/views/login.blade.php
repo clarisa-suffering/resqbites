@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('userLayout')
 
 @section('content')
 <div class="flex justify-center items-center min-h-screen bg-gray-100">

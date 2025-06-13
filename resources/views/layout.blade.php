@@ -20,14 +20,14 @@
             <div class="relative flex h-16 items-center justify-between">
                 <!-- Logo -->
                 <div class="flex items-center">
-                    <a href="{{ route('home') }}">
+                    <a href="{{ route('userHome') }}">
                         <img class="h-20 w-auto cursor-pointer" src="/Logo_Resqbite.png" alt="ResQBite">
                     </a>
                 </div>
 
                 <!-- Desktop Menu -->
                 <div class="hidden sm:flex sm:items-center sm:space-x-4">
-                    <a href="{{ route('home') }}"
+                    <a href="{{ route('userHome') }}"
                         class="rounded-md px-3 py-2 text-sm font-medium 
         {{ Route::currentRouteName() == 'home' ? 'bg-amber-500 text-white' : 'text-gray-100 hover:bg-amber-500 hover:text-white' }}">
                         Home
@@ -45,11 +45,17 @@
                         Restaurants
                     </a>
 
+                    <a href="{{ route('orderPage') }}"
+                        class="rounded-md px-3 py-2 text-sm font-medium 
+        {{ Route::currentRouteName() == 'orderPage' ? 'bg-amber-500 text-white' : 'text-gray-100 hover:bg-amber-500 hover:text-white' }}">
+                        Keranjang
+                    </a>
+
                     <!-- Login button styled as a rounded button with background -->
-                    <a href="{{ route('login') }}"
+                    <a href="{{ route('home') }}"
                         class="ml-4 inline-block rounded-full bg-white text-orange-500 font-semibold px-5 py-2
         hover:bg-amber-500 hover:text-white transition-colors duration-300">
-                        Login
+                        Logout
                     </a>
                 </div>
 
@@ -117,7 +123,7 @@
         <section class="p-6 mb-2">
             <div class="text-center mt-10 bg-white py-8 rounded-2xl shadow-md max-w-5xl mx-auto">
                 <div class="flex flex-col items-center">
-                    <img class="h-24 w-auto" src="/Logo_Resqbite.png" alt="ResQBite">
+                    <img class="h-28 w-auto" src="/Logo_Resqbite.png" alt="ResQBite">
                     <div class="text-lg font-semibold mb-3">Ingin menggabungkan usaha Anda di platform kami?</div>
                     <a href="{{ route('formRegisterUMKM') }}"
                         class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-full font-bold">KLIK

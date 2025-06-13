@@ -1,4 +1,4 @@
-@extends('userLayout')
+@extends('layout')
 
 @section('content')
 <!-- Carousel Section -->
@@ -9,7 +9,7 @@
     </div>
     <!-- Slide 2 -->
     <div class="hidden duration-700 ease-in-out h-full" data-carousel-item>
-        <img src="https://helpcenter-cms-assets.grab.com/helpcenter/grab/merchant/id/id/4409826486681/4409826486681-Artikel.png" class="absolute inset-0 w-full h-full object-cover" alt="...">
+        <img src="{{ asset('banner_ads.png') }}" class="absolute inset-0 w-full h-full object-cover" alt="...">
     </div>
     <!-- Slide 3 -->
     <div class="hidden duration-700 ease-in-out h-full" data-carousel-item>
@@ -42,18 +42,20 @@
 </section>
 
 <!-- Terdekat Dengan Anda -->
-<section class="py-10 px-6 max-w-7xl mx-auto">
+<section class="py-6 px-6 max-w-7xl mx-auto">
     <h2 class="text-2xl font-bold mb-6 text-gray-800">Terdekat Dengan Anda</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         @foreach ([
-        ['img' => 'https://asset-2.tstatic.net/bangka/foto/bank/images/20230211-Ayam-goreng-mentega.jpg', 'store' => 'Izuka Kitchen', 'name' => 'Ayam goreng mentega'],
-        ['img' => 'https://i.ytimg.com/vi/Q6nmR-jN0Jc/hq720.jpg', 'store' => 'Depot SGP', 'name' => 'Ricebowl ayam teriyaki'],
-        ['img' => 'https://img-global.cpcdn.com/recipes/cfccce6fba971208/1200x630cq70/photo.jpg', 'store' => 'Dapoer Mama', 'name' => 'Capcay seafood'],
+        ['img' => 'https://asset-2.tstatic.net/bangka/foto/bank/images/20230211-Ayam-goreng-mentega.jpg', 'store' => 'Izuka Kitchen', 'name' => 'Ayam goreng mentega', 'discount' => 20],
+        ['img' => 'https://i.ytimg.com/vi/Q6nmR-jN0Jc/hq720.jpg', 'store' => 'Depot SGP', 'name' => 'Ricebowl ayam teriyaki', 'discount' => 35],
+        ['img' => 'https://img-global.cpcdn.com/recipes/cfccce6fba971208/1200x630cq70/photo.jpg', 'store' => 'Dapoer Mama', 'name' => 'Capcay seafood', 'discount' => 40],
         ] as $item)
         <div class="bg-white rounded-xl shadow hover:shadow-lg transition-shadow duration-300 p-4">
             <div class="relative aspect-[2/1] overflow-hidden rounded-lg mb-2">
                 <img src="{{ $item['img'] }}" class="object-cover w-full h-full" alt="{{ $item['name'] }}">
-                <div class="absolute top-2 right-2 bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-lg shadow">-20%</div>
+                <div class="absolute top-2 right-2 bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-lg shadow">
+                    -{{ $item['discount'] }}%
+                </div>
             </div>
             <p class="text-sm text-orange-600 mb-1">{{ $item['store'] }}</p>
             <h3 class="text-lg font-semibold text-gray-900">{{ $item['name'] }}</h3>
@@ -63,7 +65,7 @@
 </section>
 
 <!-- Sedang Buka Sekarang -->
-<section class="py-10 px-6 max-w-7xl mx-auto">
+<section class="py-6 px-6 max-w-7xl mx-auto">
     <h2 class="text-2xl font-bold mb-6 text-gray-800">Sedang Buka Sekarang</h2>
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
         @foreach ([
@@ -91,7 +93,7 @@
 </section>
 
 <!-- Banner Section -->
-<section class="px-6 pb-10 max-w-7xl mx-auto">
+<section class="px-6  max-w-7xl mx-auto">
     <img src="{{ asset('banner_waste.png') }}" class="w-full rounded-xl shadow-lg" alt="Waste Awareness Banner">
 </section>
 </div>
